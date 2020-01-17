@@ -101,4 +101,55 @@ By default, all RPis have the hostname set to `raspberrypi`. If more than one de
 
 The list of MAC addresses generated from the process above is necessary to configure the router so that static IP addresses are reserved for each RPi.
 
+### Outline of steps:
 
+1. Log into your router and locate the LAN settings
+1. Modify the IP range used by DHCP
+1. Reserve an IP for your device(s)
+
+### Locate LAN Settings
+
+The following images show the setup on a Netgear R6400 router. Your router (and mileage) may vary.
+
+![](images/router-setup-01a.png)<br>
+LAN Settings Panel
+
+### Modify IP Range used by DHCP
+
+You can setup the IP range used by DHCP to automatically (and unpredictably) assign IP addresses to clients here. Conversely, we are blocking out a range that we will use for IP addresses that will be reserved for RPis or other devices.
+
+* Set the **Starting IP Address** and **Ending IP Address** to be used by DHCP for dynamic IP address assignment.
+* Apply the settings
+
+![](images/router-setup-02a.png)<br>
+Editing the IP range used by DHCP for automatic IP address assignment
+
+**Note:** If we wish to reserve the range from 192.168.1.100-254, we'd set the starting IP to 192.168.1.2 and the ending IP to 192.168.1.99. This tells DHCP to only use 192.168.1.2-99 for dynamic IP assignment.
+
+
+### Reserving IP Addresses
+
+* Add a reserved IP address using its MAC address
+
+![](images/router-setup-02b.png)<br>
+Adding a device
+
+**Note:** Spoofing your MAC address will break this assignment
+
+* Enter the desired IP address
+* Enter the device MAC Address
+
+![](images/router-setup-03a.png)<br>
+Reserving IP address
+
+* Add the device
+
+![](images/router-setup-03b.png)<br>
+Adding the device
+
+### IP Reserved!
+
+In order to test that the reservation was successful, connect your device to the network and ping/ssh into it.
+
+![](images/router-setup-04a.png)<br>
+Reserved IP address
