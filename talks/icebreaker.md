@@ -70,7 +70,8 @@ Fabric for Dior 2015 Cruise Collection (2014)
 
 ### Installations
 
-![](images/)
+![](images/entitiy_i_003.jpg)
+Entity I (2010)
 
 ![](images/chandelier.jpg)<br>
 Chandelier for One of Many Possible Ends (2014)
