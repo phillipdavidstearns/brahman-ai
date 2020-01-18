@@ -4,12 +4,21 @@ A guide to using Ansible to setup and configure an arbitrary number of rapsberry
 
 ### Assumptions:
 
-* Some comfort with terminal, general understanding of linux.
+* Some comfort with terminal, general understanding of unix/linux.
 * Written from the POV of a Mac OSX user. (Sorry WinBros)
 
 ### Requirements:
 
 * **Admin Access to your Router**
+* RaspberryPi with some sort of networking capacity (ethernet and/or wifi)
+	* MicroSD Card and Adapter
+	* Power
+
+### Tools:
+
+* BalenaEther
+* Homebrew
+* Ansible
 
 ### Outline:
 
@@ -153,3 +162,123 @@ In order to test that the reservation was successful, connect your device to the
 
 ![](images/router-setup-04a.png)<br>
 Reserved IP address
+
+## Working with Ansible
+
+> Ansible is an open-source software provisioning, configuration management, and application-deployment tool. It runs on many Unix-like systems, and can configure both Unix-like systems as well as Microsoft Windows. It includes its own declarative language to describe system configuration. — [Source: Wikipedia](Ansible is an open-source software provisioning, configuration management, and application-deployment tool. It runs on many Unix-like systems, and can configure both Unix-like systems as well as Microsoft Windows. It includes its own declarative language to describe system configuration.)
+
+### Overview
+
+1. Installing Ansible (version 2.9  at time of writing)
+1. Setting up your Inventory
+1. Running Individual Modules
+1. Working with Playbooks
+
+### Installation:
+
+[Full Installation Documentation](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+
+#### Mac OSX
+
+* Option 1 - Install with [Homebrew](https://brew.sh): `brew install ansible`
+* Option 2 - Install using `pip` (ansible recommended): `pip install --user ansible`
+
+#### Debian Linux
+
+* Add the following line to `/etc/apt/sources.list`:
+
+```
+deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
+```
+
+* Then run these commands:
+	1. `$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367`
+	1. `$ sudo apt update`
+	1. `$ sudo apt install ansible`
+
+### Setting up your Inventory
+
+Your inventory defines your collection of devices. We're not going to go into the details here, but it's possible to group your hosts in a number of ways depending on the complexity of your system. For now, we'll create a single group for our RPis.
+
+#### File Structure
+
+* Create a directory structure for your ansible files in your project by running the following commands:
+	* `cd /the/path/to/your/project`
+	*  `mkdir ansible; cd ansible`
+	*  `mkdir inventory roles files template group_vars host_vars`
+	*  `cd inventory`
+	*  `>all`
+
+From your project folder your should have a directory structure something like this:
+
+```
+.
+└── anisble
+    ├── files
+    ├── group_vars
+    ├── host_vars
+    ├── inventory
+    │   └── all
+    ├── roles
+    └── templates
+```
+
+#### Building the Inventory
+
+We'll focus on the inventory, which is configured in the `all` file we just created.
+
+Have a look at the following example file:
+
+```
+# Group
+[raspberry_pis]
+
+# hostname	ip address
+brahman_vision_000	ansible_host=192.168.1.100
+brahman_vision_001	ansible_host=192.168.1.101
+brahman_vision_002	ansible_host=192.168.1.102
+brahman_vision_003	ansible_host=192.168.1.103
+brahman_vision_004	ansible_host=192.168.1.104
+brahman_vision_005	ansible_host=192.168.1.105
+
+```
+
+You can generate a list for a range of devices using the script below:
+
+```
+#!/bin/bash
+
+FILENAME="all"
+GROUP_NAME="raspberry_pis"
+BASE_NAME="brahman_vision"
+IP_SUBNET="192.168.1"
+START=0
+END=99
+
+# create a list
+> $FILENAME
+
+# add group name
+echo -e "[$GROUP_NAME]\n" >> $FILENAME
+
+# generate the list
+for (( i=$START; i<=$END; i++ )); do
+        HOST_NUMBER=$(printf "%0*d\n" 3 $i)
+        HOST_IP=$(( $i + 100 ))
+        echo "${BASE_NAME}_${HOST_NUMBER} ansible_host=${IP_SUBNET}.${HOST_IP}" >> $FILENAME
+done
+
+exit $?
+
+```
+
+* run the script from the `guides` directory: `bash genHostList.sh`
+* move the output into the inventory directory: `mv all anisble/inventory/`
+
+Your inventory should be set.
+
+#### Working with Group Variables
+
+You can set group variable values for ansible to work with in a couple of different place. For the sake of keeping the file content minimal, we'll create and edit a file containing group variables in the `ansible/group_vars` folder in `.yml` format.
+
+* create a `nano ansible/group_vars/raspbery_pis`
