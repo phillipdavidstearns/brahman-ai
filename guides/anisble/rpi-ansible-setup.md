@@ -279,6 +279,15 @@ Your inventory should be set.
 
 #### Working with Group Variables
 
-You can set group variable values for ansible to work with in a couple of different place. For the sake of keeping the file content minimal, we'll create and edit a file containing group variables in the `ansible/group_vars` folder in `.yml` format.
+You can set group variable values for ansible to work with in a couple of different place. For the sake of keeping the file content minimal, we'll create and edit a file containing group variables in the `ansible/group_vars` folder in `.yml` format.	
 
-* create a `nano ansible/group_vars/raspbery_pis`
+* create a file for group variables `nano ansible/group_vars/raspbery_pis`
+* add the following to the file:
+
+```
+---
+# file: group_vars/raspberry_pis
+ansible_user=pi
+```
+
+**Note:** Though we could have put this information in the `all` file in our inventory, it'll be a lot easier to find this information here when we ned to change this in the future. For instance, when we want to change the username or remove the default username, we can update the variable here to match.
