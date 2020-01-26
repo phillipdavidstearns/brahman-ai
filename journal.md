@@ -16,7 +16,7 @@ Caveat:
 > At the moment Ubiquiti does not support arm64, hence it is not available via the repo. A download and manual installation will be necessary for this. 
 
 * Arch:
-	* [https://icub3d.github.io/post/unifi-controller-arch-linux-arm/](https://icub3d.github.io/post/unifi-controller-arch-linux-arm/)
+	1. [https://icub3d.github.io/post/unifi-controller-arch-linux-arm/](https://icub3d.github.io/post/unifi-controller-arch-linux-arm/)
 * Debian:
 	1. [Installing a Debian Linux Armhf O/S on the Beaglebone Black](https://www.ofitselfso.com/Beagle/InstallingArmhfKernelBeagleboneBlack.php)
 		* [Flasher Debian Image for BeagleBone](https://beagleboard.org/latest-images)
