@@ -1,14 +1,50 @@
 # Journal
 
+## Jan 30 Thu
+
+* Cleaned up after dust storm
+* Restored remote access to the cluster
+	* EXR > NETGEAR SWITCH > UBT 2.4G AP > NETGEAR EX6200 > DLINK DSR-250 > NETGEAR GS110TP (1/2)
+* Begin setup for expanded cluster
+	* Added 4x RPis to the Reserved IP list on the DSR-250
+
+## Jan 29 Wed
+
+* Major windstorm!!!
+	* We lost 2.5 of 5 Yurts
+	* Damage to the workspace structure
+	* Workspace is WAY dusty now
+
+## Jan 28 Tue
+
+* Spa Day
+* Received new iPhone XS, set it up
+* Cluster keeps going offline. Need to check the router.
+* Moved AP from trailer to where the NETGEAR was, put the TPLink by the sink pointing at Chatsubo.
+* Need to check on EX6200 to figure out why it's dropping so many packets. May have to hard wire the cluster into the network...
+
+## Jan 27 Mon
+
+* Reflashed MicroSD cards for RPis
+* Tried and failed to update Debian from Jessie to Buster on Beaglebone black
+* Broke the Internet for a hot sec and fixed it
+	* Attempted to configure the E3000 as a proper access point and disable WiFi on Viasat modem/router
+	* By some fluke(?) the E3000 was assigned an IP on the BRAHMAN-AI LAN
+	* Found bridge mode on the Viasat and lost contact when enabled
+	* Took a while to figure out but finally got a hold of the EdgeRouter and configured it to use DHCP to assign an IP to its eth0 port via the modem. Apparently bridge mode on the modem bridges the internet uplink to the internal network and as a bonus, disabled WiFi. The LAN ports then potentially exposed to the open Internet.
+	* The E3000 needs to be connected to the internal LAN and not the modem in this case. Previously, I believe the router was actually allowing the E3000 to become accessible to the internal LAN. This is still something I have to walk through with Seva.
+
+
 ## Jan 26 Sun
 
 * Reset Ubiquiti IP Cam
-* Attempt to upgrade WiFi
-	* Replace Jetpack with NETGEAR 4G modem
+* Upgrade WiFi @ Pirates
+	* Replaced Jetpack with NETGEAR 4G modem
 * Identified a possible corrupted MicroSD in hbd-01
 	* Attempting to re-flash with an image of hbd-03
+* Expanded `wg-stop` and cleaned up `wg-start`
 * Relocated the Cisco E3000 to the main house @ Chatsubo
-* 
+
 ### Setup UniFi controller on a Beaglebone
 
 Caveat:

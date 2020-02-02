@@ -1,5 +1,5 @@
 ---
 # file: group_vars/raspberry_pis
-ansible_connection=ssh
-ansible_user=pi
-ansible_ssh_pass=raspberry
+ansible_connection: ssh
+ansible_user: pi
+ansible_sshp_ass: raspberry

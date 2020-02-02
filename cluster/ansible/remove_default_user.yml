@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Remove the user {{ default_user }}
+    user:
+      name: "{{ default_user }}"
+      state: absent
+      remove: yes
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+[main]
+
+cluster000	ansible_host=10.79.20.100
+cluster001	ansible_host=10.79.20.101
+cluster002	ansible_host=10.79.20.102
+cluster003	ansible_host=10.79.20.103
+cluster004	ansible_host=10.79.20.104
+cluster005	ansible_host=10.79.20.105
+cluster006	ansible_host=10.79.20.106
+cluster007	ansible_host=10.79.20.107
+cluster008	ansible_host=10.79.20.108
+cluster009	ansible_host=10.79.20.109
+cluster010	ansible_host=10.79.20.110
+cluster011	ansible_host=10.79.20.111
+
+[storage]
+
+cluster_storage ansible_host=10.79.20.99
+
+[all:vars]
+
+ansible_user=cluster
