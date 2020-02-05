@@ -68,6 +68,17 @@ https://www.element14.com/community/community/raspberry-pi/blog/2016/11/21/how-t
 		<td>acrylic</td>
 	</tr>
 	
+	<!--Beaglebone Black Rev. C-->
+	
+	<tr>
+		<td>Beaglebone Black</td>
+		<td>Rev. C</td>
+		<td>eMMC, MicroSD</td>	
+		<td>2</td>
+		<td>acrylic</td>
+	</tr>
+
+	
 	<!--Pine 64-->
 	
 	<tr>

@@ -1,9 +1,5 @@
-[main]
+[core]
 
-cluster000	ansible_host=10.79.20.100
-cluster001	ansible_host=10.79.20.101
-cluster002	ansible_host=10.79.20.102
-cluster003	ansible_host=10.79.20.103
 cluster004	ansible_host=10.79.20.104
 cluster005	ansible_host=10.79.20.105
 cluster006	ansible_host=10.79.20.106
@@ -12,11 +8,43 @@ cluster008	ansible_host=10.79.20.108
 cluster009	ansible_host=10.79.20.109
 cluster010	ansible_host=10.79.20.110
 cluster011	ansible_host=10.79.20.111
+cluster012	ansible_host=10.79.20.112
+cluster013	ansible_host=10.79.20.113
+cluster014	ansible_host=10.79.20.114
+cluster015	ansible_host=10.79.20.115
+
+#-------------------------------------------------
+
+[bbaaa]
+
+cluster000	ansible_host=10.79.20.100
+cluster001	ansible_host=10.79.20.101
+cluster002	ansible_host=10.79.20.102
+cluster003	ansible_host=10.79.20.103
+
+[bbaaa:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+#-------------------------------------------------
 
 [storage]
 
-cluster_storage ansible_host=10.79.20.99
+#cluster_storage ansible_host=10.79.20.99
 
-[all:vars]
+#-------------------------------------------------
 
-ansible_user=cluster
+[controller]
+
+#ubt_controller ansible_host=10.79.20.254
+
+#-------------------------------------------------
+
+[bootstrap]
+
+#cluster009	ansible_host=10.79.20.109	ansible_user=pi	ansible_ssh_pass=raspberry
+#cluster012	ansible_host=10.79.20.112	ansible_user=pi	ansible_ssh_pass=raspberry
+#cluster013	ansible_host=10.79.20.113	ansible_user=pi	ansible_ssh_pass=raspberry
+#cluster014	ansible_host=10.79.20.114	ansible_user=pi	ansible_ssh_pass=raspberry
+#cluster015	ansible_host=10.79.20.115	ansible_user=pi	ansible_ssh_pass=raspberry
+ubt_controller ansible_host=10.79.20.254 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
+cluster_storage ansible_host=10.79.20.99 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd

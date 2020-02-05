@@ -1,4 +1,4 @@
 ---
-# file: group_vars/storage
+# file: group_vars/controller
 default_user: debian
 ansible_user: cluster

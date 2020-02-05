@@ -1,5 +1,29 @@
 # Journal
 
+## Feb 4 Tue
+
+* Continued expanding cluster and documenting process of setting up.
+* Cluster now has 18 devices connected
+* Attempting to configure cluster to run bb-aaa
+
+## Feb 3 Mon
+
+* Overnight Windstorm
+* Relocated lab from outdoors to inside ChaTsubo
+* Setup RPi cluster and added more devices for a total of 17.
+
+## Feb 2 Sun
+
+* Assisted with TV installation
+
+## Feb 1 Sat
+
+* cluster009 is down for some reason...
+
+## Jan 31 Fri
+
+* Bike ride to Niland
+
 ## Jan 30 Thu
 
 * Cleaned up after dust storm

@@ -1,0 +1,4 @@
+---
+worker_port: "8184"
+worker_host_ip: "0.0.0.0"
+worker_id: "2"

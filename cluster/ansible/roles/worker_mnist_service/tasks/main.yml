@@ -1,0 +1,23 @@
+- name: Copy worker_mnist.service unit to /etc/systemd/system/
+  copy:
+    src: worker_mnist.service
+    dest: /etc/systemd/system/
+    mode: '755'
+
+- name: Generate and upload systemd configurations for worker_mnist.service
+    template:
+      src: worker_mnist.conf.j2
+      dest: /etc/bbaaa/worker_mnist.conf
+
+- name: Enable worker_mnist.service
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    name: worker_mnist.service
+    enabled: yes
+    force: yes
+
+- name: Start worker_mnist.service
+  systemd:
+    name: worker_mnist.service
+    state: started

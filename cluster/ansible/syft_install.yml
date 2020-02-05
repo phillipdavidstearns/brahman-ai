@@ -1,0 +1,54 @@
+---
+- hosts: bbaaa
+  become: yes
+  gather_facts: no
+  tasks:
+
+# sudo apt install libopenblas-dev libblas-dev libatlas-base-dev m4 cmake cython python3-dev python3-yaml python3-setuptools python3-pip
+  - name: Upgrade Installed Packages
+    apt:
+      update_cache: yes
+      upgrade: yes
+
+  - name: Install any missing dependencies
+    apt:
+      update_cache: no
+      force: true
+      name: "gcc-8-base=8.3.0-6+rpi1"
+
+  - name: Install any missing dependencies
+    apt:
+      update_cache: no
+      install_recommends: yes
+      name: [ libgfortran5, libopenblas-base, libblas3, libatlas3-base ]
+  
+  - name: Install packages
+    apt:
+      update_cache: no
+      install_recommends: yes
+      name: [ libopenblas-dev, libblas-dev, libatlas-base-dev, m4, cmake, cython, python3-dev, python3-yaml, python3-setuptools, python3-pip ]
+
+# git clone https://github.com/brahman-ai/PyGrid
+# cd PyGrid
+
+  - name: Clone brahman-ai fork of PyGrid
+    git:
+      clone: yes
+      update: yes
+      repo: https://github.com/brahman-ai/PyGrid
+      dest: /home/cluster/PyGrid
+      force: yes
+
+# pip3 install -r requirements.txt
+# make sure that ansible_python_interpreter=/usr/bin/python3 is inclided in host/group vars
+
+  - name: Install PyGrid requirements
+    pip:
+      requirements: /home/cluster/PyGrid/requirements.txt
+
+# python3 setup.py install
+  
+  - name: Install PyGrid
+    shell:
+      chdir: /home/cluster/PyGrid/
+      cmd: 'python3 setup.py install'
