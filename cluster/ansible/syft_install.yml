@@ -10,23 +10,30 @@
       update_cache: yes
       upgrade: yes
 
-  - name: Install any missing dependencies
+  - name: Install gcc-8-base
     apt:
       update_cache: no
-      force: true
-      name: "gcc-8-base=8.3.0-6+rpi1"
+      name: gcc-8-base
 
-  - name: Install any missing dependencies
+  - name: Install dependencies libgfortran5, libopenblas-base, libblas3, libatlas3-base
     apt:
       update_cache: no
       install_recommends: yes
       name: [ libgfortran5, libopenblas-base, libblas3, libatlas3-base ]
   
-  - name: Install packages
+  - name: Install packages git, libtiff5, libopenjp2-7, libopenblas-dev, libblas-dev, libatlas-base-dev, m4, cmake, cython, python3-dev, python3-yaml, python3-setuptools, python3-pip
     apt:
       update_cache: no
       install_recommends: yes
-      name: [ libopenblas-dev, libblas-dev, libatlas-base-dev, m4, cmake, cython, python3-dev, python3-yaml, python3-setuptools, python3-pip ]
+      name: [ git, libtiff5, libopenjp2-7, libopenblas-dev, libblas-dev, libatlas-base-dev, m4, cmake, cython, python3-dev, python3-yaml, python3-setuptools, python3-pip ]
+
+  - name: Clone brahman-ai fork of bb-aaa
+    git:
+      clone: yes
+      update: yes
+      repo: https://github.com/brahman-ai/bb-aaa
+      dest: /home/cluster/bb-aaa
+      force: yes
 
 # git clone https://github.com/brahman-ai/PyGrid
 # cd PyGrid

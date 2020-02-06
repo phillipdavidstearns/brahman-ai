@@ -2,12 +2,17 @@
   copy:
     src: worker_mnist.service
     dest: /etc/systemd/system/
-    mode: '755'
+    mode: '644'
+
+- name: Create directory /etc/bb-aaa/
+  file:
+    path: /etc/bb-aaa/
+    state: directory
 
 - name: Generate and upload systemd configurations for worker_mnist.service
-    template:
-      src: worker_mnist.conf.j2
-      dest: /etc/bbaaa/worker_mnist.conf
+  template:
+    src: worker_mnist.conf.j2
+    dest: /etc/bb-aaa/worker_mnist.conf
 
 - name: Enable worker_mnist.service
   systemd:
@@ -15,7 +20,6 @@
     daemon_reexec: yes
     name: worker_mnist.service
     enabled: yes
-    force: yes
 
 - name: Start worker_mnist.service
   systemd:

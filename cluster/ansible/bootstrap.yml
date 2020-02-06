@@ -1,6 +1,7 @@
 ---
 - hosts: bootstrap
   become: yes
+  gather_facts: no
   tasks:
 
   - name: Change hostname to inventory_hostname in /etc/hostname
@@ -12,6 +13,14 @@
       path: /etc/hosts
       regex: '^127\.0\.1\.1'
       line: "127.0.1.1  {{ inventory_hostname }}"
+
+  - name: Allow 'sudo' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%sudo'
+      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
 
 #Abraham 2020
 
@@ -25,32 +34,69 @@
       state: present
       groups: sudo
 
-  - name: Allow 'sudo' group to have passwordless sudo
-    lineinfile:
-      dest: /etc/sudoers
+  - name: Add user 'phillipstearns'
+    user:
+      name: phillipstearns
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: yes
       state: present
-      regexp: '^%sudo'
-      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
-      validate: 'visudo -cf %s'
+      groups: sudo
 
-  - name: Set authorized key for Phillip to 'cluster'
+  - name: Set authorized key for Phillip to 'cluster' and 'phillipstearns'
     authorized_key:
-      user: cluster
+      user: "{{ item }}"
       state: present
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYS3HXGzz8v0ZBBiVhuObUlW+p6NRVcWlxfll/m+UbUp9h+TOSycKilJaUOmx/UmJ0kvb9pB5zwQjmFwYcBHDTUTeoau1YiJhlh2g3CkNXdw8oxpsIXvs3rXfHMv7V9BqtFkiSOG5IPNtdZ6m6tkocefwTWkowDCJEb1mqyEQIcgjxubjlqAjFtDVIVaR4RoWAEVBGRaCXbnMKDGiki1M/n2svm95mJiJ406nWbSE+cHhL97xkJbjh06kfvUhY3E1qOJhMfXY4lVRdGiZmAWA45JfxLrtCXhyBIK0jxyztcG8HKRKa8RZ4pvc8I0XHBMhNYXAO2hqpztgVJZzjoM/5 phillipstearns@MacBook"
+    with_items:
+        - cluster
+        - phillipstearns
 
-  - name: Set authorized key for Alejandro to 'cluster'
+  - name: Add user 'alejandro'
+    user:
+      name: alejandro
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: yes
+      state: present
+      groups: sudo
+
+  - name: Set authorized key for Alejandro to 'alejandro'
     authorized_key:
-      user: cluster
+      user: "{{ item }}"
       state: present
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJnz6oJvrXU+A3lCfE3vJf02lG1jysboAhghSN7ljeJEHrs1WIg3kjI3HcYraVc6cEvppsMwZ2EC1i4mmU3DhCU1BFtqr4JPPSVry98MWASBdX3Oy+VU2e4pKLy+kAG83MvNDeDOJkZFa+PKAKE5vIIww8GzN1snvRLd23go65fMZukPjzkyxpOfYWOANxLq7CZeS+fWG1yucgSv5yRS6Zd5urPUpbe9DgEsvpNN2PuZnddlepwDrSzs+AB2wHw6vuq8Luwshx8NpvyweF/DqMAii/6IAAOIzxdosbqeFkqdR3iuD5daIjYsrXW91Wg2Y/kcvJQF/X3RbNfLC9c0rFoygD9fPXV4ridHlrfg5OhkAoHZnmE9i4IwdtrAhDaTuZQ3c4uWvPBWY1mVjxesZo4PtJ1uRElgqB2WW8VPvYoZ4i7b1uORlN1n/O6QwnZOHyUccCvHMNgDk6mEcKTHdEgn5thfnpDnD8IywAmaC56tbja2L+Bgr26I3qRFdJWL23r58bsJsb3XGOaGzAc20T6ibEVKkmhzqlhg71yVp4ZF9HDxm+B774pNnvGlvEUbr1D8DeaHr5RYoCtNBNlf5UhV7/Wqi38Cq78HcYvX037oBel+/xkS4SRMByG4jteihhUFXg3xWBhbJIFbrj8Bjy2kZdpF11EY06un9eUHMRoQ== alejandrosanchzmedina@gmail.com"
+    with_items:
+        - cluster
+        - alejandro
+
+  - name: Add user 'gene'
+    user:
+      name: gene
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: yes
+      state: present
+      groups: sudo
+
+  - name: Set authorized key for Gene to 'gene'
+    authorized_key:
+      user: "{{ item }}"
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzG55yhLNiLl9+OhtQf8hij/FiWZZhcdqm97ZAJbxfML+KN/eHUqmwOTPDlGwOmDuy6Io9gybv5mnW8EBQOLMv+AMPwMGqJQIGdHzqSBdJFRmGO+v8W8VPkWZOcsWy34SKfYtAXp7cGvLCv/xlAAIYOT63Al/XZo0yeJRIJPw62Gr9j1qyFGZr/2A5PcA6cYFxIzpdJpube0KrllJ6mASZCzGkhNpv+PeKlwQBbTv4/TbU8hD32aUbe2h/7tOO9ICcoGYK9OqmHQ1iAmLAmIxIS7Ww+w13h1L/fDYoPkr48/zGuGTnzcLaYJWTlzo+ZHjh5zIPvy77Nl0y1ak85rmZ gene@Genes-MacBook-Pro.local"
+    with_items:
+        - cluster
+        - gene
 
 #Abraham Lives!
 
   - name: Change root password
     user:
       name: root
-      password: "$6$qet6Qp9nQr8cSwCq$GQYyOyWroS7Vk1ITpg0QoUv0UPEM8FA55i7U.GeuUpIGO.jm3lmU6KlYZJ/b4GGmQJgF/8jPcMxxiXBtcXZlJ1"
+      password: "$6$YSB/2PA4Fx7myMnv$eUsCUSwkewWxt/y5oT82ykjSzlTHmY0UKwuBfMm2nre6xX3HUXvlSLcaeVZFepDrLroMYwJezkqq6if2MSqph."
 
   - name: Disable Password Authentication
     lineinfile:

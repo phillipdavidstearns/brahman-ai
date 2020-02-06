@@ -1,10 +1,20 @@
 # Journal
 
+## Feb 5 Wed
+
+* Fucked the cluster by removing the sudo group from soduers >.<
+	* To make matters worse, the root password was not set as expected so...
+	* I had to reflash all the SDs and start over
+	* Can flash 5-6 cards at once in ~30 minutes, which is pretty good. The bonus is that adding ssh and wpa_supplicant files can be done with a bash one liner
+* Beaglebones still refuse to boot from sd cards. I am beginning to strongly dislike them, the community isn't helpful and forum posts don't turn up useful suggestions, just arrogant and racist criticism.
+
+
 ## Feb 4 Tue
 
 * Continued expanding cluster and documenting process of setting up.
 * Cluster now has 18 devices connected
 * Attempting to configure cluster to run bb-aaa
+* Setup `systemd` unit and conf template, ready to deploy.
 
 ## Feb 3 Mon
 

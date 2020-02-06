@@ -10,7 +10,8 @@ Rough Outline of the Process:
 4. Configure Router to reserve IP addresses for cluster devices
 5. Setup Ansible Inventory
 6. Configure SSH hosts
-	*  Run `ssh-keyscan <device_ip>` on your devices
+	*  Run `for i in {000..015}; do IP_ADDR=10.79.20.1$(printf "%02d" $i);ssh-keyscan $IP_ADDR >> ~/.ssh/known_hosts;done`
+	*  re above: you may have to remove old signatures if IPs have been seen before and signatures are different.
 	* `export ANSIBLE_HOST_KEY_CHECKING=False`
 	* Edit `/etc/hosts`
 	* Edit `~/.ssh/config`
