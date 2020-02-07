@@ -22,8 +22,6 @@
       line: '%sudo ALL=(ALL) NOPASSWD: ALL'
       validate: 'visudo -cf %s'
 
-#Abraham 2020
-
   - name: Add user 'cluster'
     user:
       name: cluster
@@ -90,8 +88,6 @@
     with_items:
         - cluster
         - gene
-
-#Abraham Lives!
 
   - name: Change root password
     user:
