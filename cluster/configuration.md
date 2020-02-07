@@ -211,6 +211,6 @@ note: `*`, the 'nix wildcard can be used to apply these to hostnames that may oc
 * For each individual host, specify their IP address
 
 ```
-Host cluster000
+Host cluster000 	
         HostName 10.79.20.100
 ```

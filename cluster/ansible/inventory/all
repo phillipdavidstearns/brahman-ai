@@ -1,28 +1,39 @@
 [pis]
-cluster000	ansible_host=10.79.20.100
-cluster001	ansible_host=10.79.20.101
-cluster002	ansible_host=10.79.20.102
-cluster003	ansible_host=10.79.20.103
-cluster004	ansible_host=10.79.20.104
-cluster005	ansible_host=10.79.20.105
-cluster006	ansible_host=10.79.20.106
-cluster007	ansible_host=10.79.20.107
-cluster008	ansible_host=10.79.20.108
-cluster009	ansible_host=10.79.20.109
-cluster010	ansible_host=10.79.20.110
-cluster011	ansible_host=10.79.20.111
-cluster012	ansible_host=10.79.20.112
-cluster013	ansible_host=10.79.20.113
-cluster014	ansible_host=10.79.20.114
-cluster015	ansible_host=10.79.20.115
+
+cluster000 ansible_host=10.79.20.100
+cluster001 ansible_host=10.79.20.101
+cluster002 ansible_host=10.79.20.102
+cluster003 ansible_host=10.79.20.103
+cluster004 ansible_host=10.79.20.104
+cluster005 ansible_host=10.79.20.105
+cluster006 ansible_host=10.79.20.106
+cluster007 ansible_host=10.79.20.107
+cluster008 ansible_host=10.79.20.108
+cluster009 ansible_host=10.79.20.109
+cluster010 ansible_host=10.79.20.110
+cluster011 ansible_host=10.79.20.111
+cluster012 ansible_host=10.79.20.112
+cluster013 ansible_host=10.79.20.113
+cluster014 ansible_host=10.79.20.114
+cluster015 ansible_host=10.79.20.115
 
 [beagles]
+
 cluster_storage ansible_host=10.79.20.99
 ubt_controller ansible_host=10.79.20.254
+
+[controller]
+
+ubt_controller
+
+[storage]
+
+cluster_storage
 
 #-------------------------------------------------
 
 [bbaaa]
+
 cluster000
 cluster001
 cluster002
@@ -30,40 +41,14 @@ cluster003
 
 #-------------------------------------------------
 
-[storage]
-cluster_storage
 
-#-------------------------------------------------
+[bootstrap]
 
-[controller]
-ubt_controller
-
-#-------------------------------------------------
-
-[bootstrap_pis]
-
-[bootstrap_pis:children]	
-pis
-
-[bootstrap_pis:vars]
-# ansible_user=pi
-# ansible_ssh_pass=raspberry
-
-[bootstrap_beagles]
-
-[bootstrap_beagles:children]
-beagles
-
-[bootstrap_beagles:vars]
-# ansible_user=debian
-# ansible_ssh_pass=temppwd
-# ansible_sudo_pass=temppwd
-
-[bootstrap:children]
-bootstrap_pis
-bootstrap_beagles
+#cluster_storage ansible_host=10.79.20.99 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
+#ubt_controller ansible_host=10.79.20.254 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
 
 #-------------------------------------------------
 
 [all:vars]
+
 ansible_python_interpreter=/usr/bin/python3

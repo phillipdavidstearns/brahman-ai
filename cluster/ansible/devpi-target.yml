@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  vars:
+    pypi_port: "3141"
+    config_path: "~/.pip/pip.conf"
+
+  - name: Create config file for pypi proxy at {{ config_path }}
+    file:
+      path: {{ config_path }}
+      state: present
+      create: yes
+
+  - name: Add configuration to {{ config_path }}
+    blockinfile:
+      block: |
+        [global]
+        index-url = http://{{ hostvars.cluster_storage.ansible_host }}:{{ pypi_port }}/root/pypi/+simple/
+        [search]
+        index = http://{{ hostvars.cluster_storage.ansible_host }}:{{ pypi_port }}/root/pypi/
+      dest: ~/.pip/pip.conf

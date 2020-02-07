@@ -1,4 +1,0 @@
----
-# file: group_vars/storage
-default_user: debian
-ansible_user: cluster
