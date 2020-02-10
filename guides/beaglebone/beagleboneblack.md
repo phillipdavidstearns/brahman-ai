@@ -1,7 +1,7 @@
 # Beaglebone Black Headaches...
 
 1. Boot from SDCard
-2. Mount eMMC partition to edit uEnv.txt file
+2. Write zeros over the eMMC partition table
 3. Expanding the file partition
 
 
