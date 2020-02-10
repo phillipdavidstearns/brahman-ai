@@ -4,6 +4,8 @@
 1. Setup Stream
 2. Catch with VLC
 
+I learned it [here](https://trac.ffmpeg.org/wiki/StreamingGuide).
+
 ## Get the gear!
 
 If you don't already have it installed, I recommend using [homebrew](https://brew.sh)
