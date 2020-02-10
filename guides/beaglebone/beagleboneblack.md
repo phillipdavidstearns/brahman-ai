@@ -22,39 +22,17 @@ I like Debian. This is for booting into a Debian image. Using these instructions
 
 ## Towards booting from MicroSD, ALWAYS
 
-The above steps will get you into the MicroSD OS. But likely because the eMMC only has 4GB of space, you'll want to always use the MicroSD card. Here's my attempt to get this working.
+The above steps will get you into the MicroSD OS. But likely because the eMMC only has 4GB of space, you'll want to always use the MicroSD card.
 
-1. Follow the steps above.
-2. run `sudo su` and enter the password (default unless you've changed it) to switch to root user
-2. run `mount /dev/mmcblk1p1 /media/` to mount the eMMC file system at /media/
-3. `cd /media/;ls -l` should yield:
+* I tried editing the uEnv.txt file in the /boot/ directory of the eMMC
+* I also tried changing all MLO files to MLO.bak in an attempt to hide them from uboot
+* I finally just decided to effectively wipe the eMMC ([source](https://stackoverflow.com/questions/40782403/searching-for-the-mlo-file-on-the-beaglebone-black)):
 
-```
-drwxr-xr-x  2 root root  4096 Feb  4 06:19 bin
-drwxr-xr-x  4 root root  4096 Feb  4 06:11 boot
-drwxr-xr-x  2 root root  4096 Jan  1  2000 dev
-drwxr-xr-x 96 root root  4096 Feb  5 19:24 etc
-drwxr-xr-x  5 root root  4096 Feb  5 19:26 home
--rw-r--r--  1 root root    40 Jan 24  2016 ID.txt
-drwxr-xr-x 17 root root  4096 Feb  4 06:09 lib
-drwx------  2 root root 16384 Jan  1  2000 lost+found
-drwxr-xr-x  2 root root  4096 Jan 24  2016 media
-drwxr-xr-x  2 root root  4096 Jan 24  2016 mnt
--rw-r--r--  1 root root  1008 Jan 24  2016 nfs-uEnv.txt
-drwxr-xr-x  7 root root  4096 Jan 24  2016 opt
-dr-xr-xr-x  2 root root  4096 Jan  1  1970 proc
-drwx------  5 root root  4096 Jan 24  2016 root
-drwxr-xr-x  2 root root  4096 Jan  1  2000 run
-drwxr-xr-x  2 root root  4096 Feb  4 06:19 sbin
-drwxr-xr-x  2 root root  4096 Jan 24  2016 srv
-dr-xr-xr-x  2 root root  4096 Jan  1  2000 sys
-drwxrwxrwt  9 root root  4096 Feb  7 19:03 tmp
-drwxr-xr-x 10 root root  4096 Jan 24  2016 usr
-drwxr-xr-x 12 root root  4096 Jan 24  2016 var
-```
-4. run `cp /bbb-uEnv.txt /media/uEnv.txt`copy the bbb-uEnv.txt from out current filesystem into the eMMC filesystem as uEnv.txt. Theoretically, this should tell uboot to switch to the MicroSD partition when it tries to boot from the eMMC (don't know if this breaks things when MicroSD is removed!)
-5. run `sync` to cache to disk
-6. run `shutdown -r now` to reboot
+1. Manually boot from the MicroSD as above.
+2. run `sudo dd if=/dev/zero of=/dev/mmcblk1 bs=1M count=1` to write zeros over the first 1MB of the eMMC
+3. run `sync`
+4. run `sudo shutdown now`
+5. disconnect and then reconnect power
 
 * When you login in over ssh, it should be into the MicroSD card OS.
 
