@@ -1,5 +1,39 @@
 # Journal
 
+## Feb 10 Mon
+
+* Got streaming from FFMpeg via RTP working on localhost and LAN, but it's janky
+* Shopping run
+* Sharpened Kali
+* Played Backdoors and Breaches
+
+## Feb 9 Sun
+
+* Finally solved to problem of booting Beaglebones from the MicroSD
+* Setup Sophia with an account on the cluster
+* Created a wheel group for sudo via password, reserved passwordless for the cluster user and myself.
+* Secured Mars
+* Started helping NYU crew with video streaming
+
+## Feb 8 Sat
+
+* Helped take down uprights from chatsubo
+* Welding Workshop
+* Photo editing
+
+## Feb 7 Fri
+
+* Setup the electronics lab to get more of the materials accessible
+* Swapped out solar chargers controllers on Mars
+* Mostly rode around on the uni
+* Group meeting
+
+## Feb 6 Thu
+
+* Got Gene's federated learning working on the cluster!
+* Wrestled with the beaglebones
+
+
 ## Feb 5 Wed
 
 * Fucked the cluster by removing the sudo group from soduers >.<
@@ -7,6 +41,8 @@
 	* I had to reflash all the SDs and start over
 	* Can flash 5-6 cards at once in ~30 minutes, which is pretty good. The bonus is that adding ssh and wpa_supplicant files can be done with a bash one liner
 * Beaglebones still refuse to boot from sd cards. I am beginning to strongly dislike them, the community isn't helpful and forum posts don't turn up useful suggestions, just arrogant and racist criticism.
+* Checked on Lode Star. Added fresh batteries and setup the charge controller.
+* Relocated network hardware from the speakeasy trailer to chatsubo main.
 
 
 ## Feb 4 Tue
