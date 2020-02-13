@@ -1,4 +1,4 @@
-# Cluster configuration
+# Cluster setup
 
 Rough Outline of the Process:
 
@@ -106,10 +106,10 @@ RPi 3 B+	10.79.20.108
 RPi 3 B+	10.79.20.109
 RPi 3 B+	10.79.20.110
 RPi 3 B+	10.79.20.111
-RPi 2 B		10.79.20.112
-RPi B+		10.79.20.113
-RPi			10.79.20.114
-RPi			10.79.20.115
+RPi 3 B+	10.79.20.112
+RPi 3 B+	10.79.20.113
+RPi 3 B+	10.79.20.114
+RPi 3 B+	10.79.20.115
 BBB Rev C	10.79.20.99 	(NAS)
 BBB Rev C	10.79.20.254	(Ubiquiti Controller)
 ```
@@ -160,10 +160,6 @@ note: groups and group variables can be specified in the inventory file. Once de
 
 ## SSH setup
 
- 
-Run `ssh-keyscan <device_ip>` on your devices
-
-
 ### Edit `/etc/hosts`
 
 The cluster device should be listed in the hosts file at `/etc/hosts`. See exerpt below:
@@ -190,9 +186,25 @@ The cluster device should be listed in the hosts file at `/etc/hosts`. See exerp
 
 ### Grab ssh key signatures
 
-Run `ssh-keyscan <device_ip>` on your devices
-OR
-`export ANSIBLE_HOST_KEY_CHECKING=False`
+When you `ssh` into a device for the first time, you'll likely get a prompt that looks like this:
+
+```
+The authenticity of host 'raspberrypi.local (fe80::ad2b:c3cf:c8ef:c11f%en0)' can't be established.
+ECDSA key fingerprint is SHA256:V0gi4eRZhBOGvLDm2O8OdW5EB5LQ3FC/WaRE5EZL648.
+Are you sure you want to continue connecting (yes/no)?
+```
+
+When running ansible, this breaks everything. Before you can run ansible on your targets, you need to have stored their key fingerprints.
+
+Run `ssh-keyscan <device_ip> >> ~/.ssh.known_hosts` on your devices. This saves the host fingerprints without you having to manually log in. It's nicely scriptable too:
+
+```
+for OCTET in {100..115};do ssh-keyscan 10.79.20.$OCTET >> ~/.ssh/known_hosts;done
+```
+
+If ansible hangs up on interactive ssh logins, it may be necessary to run `export ANSIBLE_HOST_KEY_CHECKING=False`.
+
+At any rate, if you try to run `ansible <group_name> -m ping -b` you'll know whether the above steps were enough.
 
 ### Edit `~/.ssh/config`
 
