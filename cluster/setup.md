@@ -82,6 +82,10 @@ cluster012:	b8:27:eb:cd:ca:94	(169.254.21.44)
 cluster013:	b8:27:eb:a0:20:fa	(169.254.136.211)
 cluster014:	b8:27:eb:2e:16:ab	(169.254.198.221)
 cluster015:	b8:27:eb:39:16:cc	(169.254.27.83)
+cluster016:	b8:27:eb:77:ef:1a	(169.254.86.192) *ALEJANDRO'S
+cluster017:	b8:27:eb:24:5b:6a	(169.254.241.158) *ALEJANDRO'S
+cluster018:	b8:27:eb:be:e3:6a	(169.254.21.44)
+cluster019:	b8:27:eb:1e:29:56	(169.254.136.211)
 
 cluster_storage:	fc:69:47:a4:cf:e9
 ubt_controller:	fc:69:47:a3:15:8a
@@ -110,6 +114,10 @@ RPi 3 B+	10.79.20.112
 RPi 3 B+	10.79.20.113
 RPi 3 B+	10.79.20.114
 RPi 3 B+	10.79.20.115
+RPi 3 B+	10.79.20.116
+RPi 3 B	10.79.20.117
+RPi 2 B	10.79.20.118
+RPi B+		10.79.20.119
 BBB Rev C	10.79.20.99 	(NAS)
 BBB Rev C	10.79.20.254	(Ubiquiti Controller)
 ```
