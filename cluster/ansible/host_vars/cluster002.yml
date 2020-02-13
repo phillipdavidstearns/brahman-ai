@@ -1,4 +1,11 @@
 ---
-worker_port: "8184"
-worker_host_ip: "0.0.0.0"
-worker_id: "2"
+
+# CONDUCTOR_PORT={{ conductor_port }}
+# CONDUCTOR_IP={{ conductor_ip }}
+# SYFT_PORT={{ syft_port }}
+# WORKER_NAME={{ worker_name }}
+
+conductor_port: "8765"
+#conductor_ip: "{{ conductor_ip }}"
+syft_port: "8184"
+worker_name: "worker003"

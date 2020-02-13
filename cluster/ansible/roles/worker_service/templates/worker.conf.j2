@@ -1,0 +1,9 @@
+# Configuration file for client side worker systemd unit template
+# /usr/bin/python3 /home/cluster/bb-aaa/worker.py --conductor_port ${CONDUCTOR_PORT} --conductor_ip ${CONDUCTOR_IP} --syft_port ${SYFT_PORT} --name ${WORKER_NAME}
+
+
+CONDUCTOR_PORT={{ conductor_port }}
+CONDUCTOR_IP={{ conductor_ip }}
+SYFT_PORT={{ syft_port }}
+WORKER_NAME={{ worker_name }}
+

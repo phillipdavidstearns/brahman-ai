@@ -1,0 +1,4 @@
+- name: Stop conductor.service
+  systemd:
+    name: conductor.service
+    state: stopped

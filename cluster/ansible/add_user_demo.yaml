@@ -1,0 +1,34 @@
+---
+- hosts: pis
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Enable Password Authentication
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication'
+      line: "PasswordAuthentication yes"
+      state: present
+
+# Bombay Beach Allstars
+# python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
+
+  - name: Add user 'demo'
+    user:
+      name: demo
+      password: "$6$44FsYEOgHzEoOsjb$RSQNWjxQJ7p5WV/GIvLaamDeCL0P3FsJO5SeCGYc4849jglM3XdYnWalYZnin9Yrrvx3YGZldBkjDm.IY.FnP1"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Restart ssh and sshd services
+    systemd:
+      daemon_reload: yes
+      name: "{{ item }}"
+      state: restarted
+    with_items:
+    - sshd.service
+    - ssh.service

@@ -1,0 +1,15 @@
+---
+
+- hosts: conductor
+  become: yes
+  gather_facts: no
+
+  roles:
+    - { role: conductor_start }
+    
+- hosts: workers
+  become: yes
+  gather_facts: no
+
+  roles:
+    - { role: worker_start }

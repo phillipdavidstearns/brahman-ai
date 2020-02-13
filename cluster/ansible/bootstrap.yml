@@ -32,7 +32,7 @@
       create_home: yes
       append: yes
       state: present
-      groups: wheel, sudo
+      groups: sudo
 
 #------------------------------------------------------
 
@@ -42,9 +42,9 @@
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
       shell: /bin/bash
       create_home: yes
-      append: yes
+      append: no
       state: present
-      groups: wheel, sudo
+      groups: sudo
 
   - name: Set authorized key for Phillip to 'cluster' and 'phillipstearns'
     authorized_key:
@@ -54,74 +54,6 @@
     with_items:
         - cluster
         - phillipstearns
-
-#------------------------------------------------------
-
-  - name: Add user 'alejandro'
-    user:
-      name: alejandro
-      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
-      create_home: yes
-      append: yes
-      state: present
-      groups: wheel
-
-  - name: Set authorized key for Alejandro to 'alejandro'
-    authorized_key:
-      user: "{{ item }}"
-      state: present
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJnz6oJvrXU+A3lCfE3vJf02lG1jysboAhghSN7ljeJEHrs1WIg3kjI3HcYraVc6cEvppsMwZ2EC1i4mmU3DhCU1BFtqr4JPPSVry98MWASBdX3Oy+VU2e4pKLy+kAG83MvNDeDOJkZFa+PKAKE5vIIww8GzN1snvRLd23go65fMZukPjzkyxpOfYWOANxLq7CZeS+fWG1yucgSv5yRS6Zd5urPUpbe9DgEsvpNN2PuZnddlepwDrSzs+AB2wHw6vuq8Luwshx8NpvyweF/DqMAii/6IAAOIzxdosbqeFkqdR3iuD5daIjYsrXW91Wg2Y/kcvJQF/X3RbNfLC9c0rFoygD9fPXV4ridHlrfg5OhkAoHZnmE9i4IwdtrAhDaTuZQ3c4uWvPBWY1mVjxesZo4PtJ1uRElgqB2WW8VPvYoZ4i7b1uORlN1n/O6QwnZOHyUccCvHMNgDk6mEcKTHdEgn5thfnpDnD8IywAmaC56tbja2L+Bgr26I3qRFdJWL23r58bsJsb3XGOaGzAc20T6ibEVKkmhzqlhg71yVp4ZF9HDxm+B774pNnvGlvEUbr1D8DeaHr5RYoCtNBNlf5UhV7/Wqi38Cq78HcYvX037oBel+/xkS4SRMByG4jteihhUFXg3xWBhbJIFbrj8Bjy2kZdpF11EY06un9eUHMRoQ== alejandrosanchzmedina@gmail.com"
-    with_items:
-        - cluster
-        - alejandro
-
-  - name: remove key of alejandro from cluster
-    authorized_key:
-      user: cluster
-      state: absent
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJnz6oJvrXU+A3lCfE3vJf02lG1jysboAhghSN7ljeJEHrs1WIg3kjI3HcYraVc6cEvppsMwZ2EC1i4mmU3DhCU1BFtqr4JPPSVry98MWASBdX3Oy+VU2e4pKLy+kAG83MvNDeDOJkZFa+PKAKE5vIIww8GzN1snvRLd23go65fMZukPjzkyxpOfYWOANxLq7CZeS+fWG1yucgSv5yRS6Zd5urPUpbe9DgEsvpNN2PuZnddlepwDrSzs+AB2wHw6vuq8Luwshx8NpvyweF/DqMAii/6IAAOIzxdosbqeFkqdR3iuD5daIjYsrXW91Wg2Y/kcvJQF/X3RbNfLC9c0rFoygD9fPXV4ridHlrfg5OhkAoHZnmE9i4IwdtrAhDaTuZQ3c4uWvPBWY1mVjxesZo4PtJ1uRElgqB2WW8VPvYoZ4i7b1uORlN1n/O6QwnZOHyUccCvHMNgDk6mEcKTHdEgn5thfnpDnD8IywAmaC56tbja2L+Bgr26I3qRFdJWL23r58bsJsb3XGOaGzAc20T6ibEVKkmhzqlhg71yVp4ZF9HDxm+B774pNnvGlvEUbr1D8DeaHr5RYoCtNBNlf5UhV7/Wqi38Cq78HcYvX037oBel+/xkS4SRMByG4jteihhUFXg3xWBhbJIFbrj8Bjy2kZdpF11EY06un9eUHMRoQ== alejandrosanchzmedina@gmail.com"
-
-#------------------------------------------------------
-
-  - name: Add user 'gene'
-    user:
-      name: gene
-      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
-      create_home: yes
-      append: yes
-      state: present
-      groups: wheel
-
-  - name: Set authorized key for Gene to 'gene'
-    authorized_key:
-      user: gene
-      state: present
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzG55yhLNiLl9+OhtQf8hij/FiWZZhcdqm97ZAJbxfML+KN/eHUqmwOTPDlGwOmDuy6Io9gybv5mnW8EBQOLMv+AMPwMGqJQIGdHzqSBdJFRmGO+v8W8VPkWZOcsWy34SKfYtAXp7cGvLCv/xlAAIYOT63Al/XZo0yeJRIJPw62Gr9j1qyFGZr/2A5PcA6cYFxIzpdJpube0KrllJ6mASZCzGkhNpv+PeKlwQBbTv4/TbU8hD32aUbe2h/7tOO9ICcoGYK9OqmHQ1iAmLAmIxIS7Ww+w13h1L/fDYoPkr48/zGuGTnzcLaYJWTlzo+ZHjh5zIPvy77Nl0y1ak85rmZ gene@Genes-MacBook-Pro.local"
-
-  - name: Remove key of gene from cluster
-    authorized_key:
-      user: cluster
-      state: absent
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzG55yhLNiLl9+OhtQf8hij/FiWZZhcdqm97ZAJbxfML+KN/eHUqmwOTPDlGwOmDuy6Io9gybv5mnW8EBQOLMv+AMPwMGqJQIGdHzqSBdJFRmGO+v8W8VPkWZOcsWy34SKfYtAXp7cGvLCv/xlAAIYOT63Al/XZo0yeJRIJPw62Gr9j1qyFGZr/2A5PcA6cYFxIzpdJpube0KrllJ6mASZCzGkhNpv+PeKlwQBbTv4/TbU8hD32aUbe2h/7tOO9ICcoGYK9OqmHQ1iAmLAmIxIS7Ww+w13h1L/fDYoPkr48/zGuGTnzcLaYJWTlzo+ZHjh5zIPvy77Nl0y1ak85rmZ gene@Genes-MacBook-Pro.local"
-
-#------------------------------------------------------
-
-  - name: Add user 'sophia'
-    user: sophia
-      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
-      create_home: yes
-      append: yes
-      state: present
-      groups: wheel
-
-  - name: Add user 'sophia'
-    authorized_key:
-      user: sophia
-      state: present
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0yybi4oLsf35tIK1L8VVvJIBeNX6x+5Qa+qKWCiSC8c0epwZ+qsW3angeYWPc4C0IRGya/GRgjmqQG3m/tr33VDdkeZ0k0jubU+Cj2d/ffssywkoVL1xP2OHZXInhg0oW2Tt0OM9OK+Z76/aLRmRPyL0aCz7kyvWm+q+KbiRABtb08P0v94RSkoNNY+ws1Z4TBWZ1nULzG+nxqYUb6RHoA18CJuRIjtLyJw1Y7hcXR1OFUrlxa7IksTsr8Cl2ypmUDxUHJIPPZP4kgRI0rLmu5oLP3Phjwo+Glc3QCBmmb7H23Ip9Ujkeyf3hT6v5OIwp1yWHuqyWCXkpSly7pu3n sophiasun@Sophias-MacBook-Pro.local"
 
 #------------------------------------------------------
 
@@ -150,8 +82,7 @@
       state: restarted
 
   - name: Reboot!
-    reboot:
-      msg: "Hold on to your butts!"
+    shell: 'sync;sleep 1;shutdown -r now'
 
 
 

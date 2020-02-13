@@ -1,0 +1,4 @@
+- name: Start conductor.service
+  systemd:
+    name: conductor.service
+    state: started

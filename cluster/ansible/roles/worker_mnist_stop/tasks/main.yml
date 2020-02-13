@@ -1,0 +1,4 @@
+- name: Start worker_mnist.service
+  systemd:
+    name: worker_mnist.service
+    state: stopped

@@ -1,0 +1,13 @@
+[Unit]
+Description=conductor.py service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/cluster/bb-aaa/conductor.py
+Restart=on-success
+RestartPreventExitStatus=SIGTERM SIGKILL
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

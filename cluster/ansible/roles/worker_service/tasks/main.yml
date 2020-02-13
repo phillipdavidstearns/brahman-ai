@@ -1,0 +1,27 @@
+- name: Copy worker.service unit to /etc/systemd/system/
+  copy:
+    src: worker.service
+    dest: /etc/systemd/system/
+    mode: '644'
+
+- name: Create directory /etc/bb-aaa/
+  file:
+    path: /etc/bb-aaa/
+    state: directory
+
+- name: Generate and upload systemd configurations for worker.service
+  template:
+    src: worker.conf.j2
+    dest: /etc/bb-aaa/worker.conf
+
+- name: Make sure worker.service is disabled
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    name: worker.service
+    enabled: no
+
+- name: Stop worker.service
+  systemd:
+    name: worker.service
+    state: stopped

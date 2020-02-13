@@ -37,10 +37,10 @@ cluster008		10.79.20.108		RPi 3 B+
 cluster009		10.79.20.109		RPi 3 B+
 cluster010		10.79.20.110		RPi 3 B+
 cluster011		10.79.20.111		RPi 3 B+
-cluster012		10.79.20.112		RPi 2 B
-cluster013		10.79.20.113		RPi B+
-cluster014		10.79.20.114		RPi
-cluster015		10.79.20.115		RPi
+cluster012		10.79.20.112		RPi 3 B+
+cluster013		10.79.20.113		RPi 3 B+
+cluster014		10.79.20.114		RPi 3 B+
+cluster015		10.79.20.115		RPi 3 B+
 cluster_storage	10.79.20.99 		Beaglebone Black Rev. C
 ubt_controller	10.79.20.254		Beaglebone Black Rev. C
 
@@ -76,12 +76,12 @@ Or you can manually connect and look for broadcast packets from the RPis:
 ```
 cluster008:	b8:27:eb:c2:e9:ca	(169.254.47.137)
 cluster009:	b8:27:eb:f6:23:4b	(169.254.252.139)
-cluster010:	b8:27:eb:74:dd:bb	(169.254.202.68) * pi:bombaybeach2020
-cluster011:	b8:27:eb:ee:fd:8a	(169.254.239.97) * pi:bombaybeach2020
-cluster012:	b8:27:eb:be:e3:6a	(169.254.21.44)
-cluster013:	b8:27:eb:1e:29:56	(169.254.136.211)
-cluster014:	b8:27:eb:25:b3:e2	(169.254.72.19)
-cluster015:	b8:27:eb:5e:1f:fa	(169.254.172.187)
+cluster010:	b8:27:eb:74:dd:bb	(169.254.202.68)
+cluster011:	b8:27:eb:ee:fd:8a	(169.254.178.133)
+cluster012:	b8:27:eb:cd:ca:94	(169.254.21.44)
+cluster013:	b8:27:eb:a0:20:fa	(169.254.136.211)
+cluster014:	b8:27:eb:2e:16:ab	(169.254.198.221)
+cluster015:	b8:27:eb:39:16:cc	(169.254.27.83)
 
 cluster_storage:	fc:69:47:a4:cf:e9
 ubt_controller:	fc:69:47:a3:15:8a

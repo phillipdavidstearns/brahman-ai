@@ -32,18 +32,28 @@ cluster_storage
 
 #-------------------------------------------------
 
-[bbaaa]
-
-cluster000
+[workers]
 cluster001
 cluster002
 cluster003
+
+[conductor]
+cluster000
+
+[bbaaa:children]
+workers
+conductor
+
+[bbaaa:vars]
+conductor_ip=10.79.20.100
 
 #-------------------------------------------------
 
 
 [bootstrap]
 
+#cluster014 ansible_host=10.79.20.114 ansible_user=pi ansible_ssh_pass=raspberry
+#cluster015 ansible_host=10.79.20.115 ansible_user=pi ansible_ssh_pass=raspberry
 #cluster_storage ansible_host=10.79.20.99 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
 #ubt_controller ansible_host=10.79.20.254 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
 
