@@ -81,6 +81,7 @@ conductor_ip=10.79.20.100
 #k8s_controller ansible_host=10.79.20.254 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
 
 #-------------------------------------------------
+# all
 
 [all:vars]
 
