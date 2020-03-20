@@ -8,7 +8,6 @@ These instructions will guide you through the setup of an FTP server on a Beagle
 * you've formatted a drive partition on a USB storage device
 * that storage device is attached to your Beaglebone (or RPi)
 * you know how to create a non-privledged user
-* 
 
 ## Setup the Server
 
