@@ -1,6 +1,6 @@
 # Setting up NAS with `vsftpd` on a Beaglebone Black (or Raspberry Pi)
 
-These instructions will guide you through the setup of an FTP server on a Beaglebone Black with an external USB drive attached. These steps should work reasonably well on a Debian distribution, such as Raspbian.
+These instructions will guide you through the setup of an FTP server on a Beaglebone Black (running Debian 10) with an external USB drive attached. These steps should work reasonably well on a Debian distribution, such as Raspbian.
 
 ### This guide starts under the assumption that:
 
