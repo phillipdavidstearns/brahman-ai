@@ -2,10 +2,17 @@
 
 These instructions will guide you through the setup of an FTP server on a Beaglebone Black with an external USB drive attached. These steps should work reasonably well on a Debian distribution, such as Raspbian.
 
-This guide starts under the assumption that you've already setup the Beaglebone Black to a point where you can remotely access it on your network over `ssh`.
+### This guide starts under the assumption that:
 
+* you've already setup the Beaglebone Black to a point where you can remotely access it on your network over `ssh`.
+* you've formatted a drive partition on a USB storage device
+* that storage device is attached to your Beaglebone (or RPi)
+* you know how to create a non-privledged user
+* 
 
-1. Login `$ ssh cluster_storage`
+## Setup the Server
+
+1. Login `$ ssh clusterNAS` or `$ ssh <user>@<ip_address>`
 1. Update apt cache: `$ sudo apt-get update`
 1. Update installed packages: `$ sudo apt-get upgrade`
 1. Install `vsftpd`: `$ sudo apt install vsftpd`
@@ -31,13 +38,18 @@ Mar 19 23:42:22 clusterNAS systemd[1]: Started vsftpd FTP server.
 
 <snip>
 
+Disk /dev/sda: 7.3 TiB, 8001563221504 bytes, 15628053167 sectors
+Disk model: Backup+ Hub BK  
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
 Disk identifier: 9B155057-6744-423B-B562-0E2040AD8C06
 
-Device          Start         End    Sectors   Size Type
-/dev/sda1          34      409633     409600   200M EFI System
-/dev/sda2      409634  6844970129 6844560496   3.2T Apple HFS/HFS+
-/dev/sda3  6845233152  7821533183  976300032 465.5G Microsoft basic data
-/dev/sda4  7821795328 15627790335 7805995008   3.7T Microsoft basic data
+Device          Start         End    Sectors  Size Type
+/dev/sda1          34      409633     409600  200M EFI System
+/dev/sda2      409634  6844970129 6844560496  3.2T Apple HFS/HFS+
+/dev/sda3  6844971008 15628053133 8783082126  4.1T Linux filesystem
 
 <snip>
 
@@ -45,12 +57,11 @@ Device          Start         End    Sectors   Size Type
 
 
 1. Create a mount point for the USD drive: `$ sudo mkdir /media/NAS`
-1. Mount the USB drive to the mount point: `$ sudo mount /dev/sda3 /media/NAS`
-1. Create a directory for the user on the USB drive: `$ sudo mkdir abraham'
+1. Mount the Linux filesystem partition of USB drive to the mount point: `$ sudo mount /dev/sda3 /media/NAS`
+1. Create a directory for the user on the USB drive: `$ sudo mkdir abraham`
 1. Set ownership to user: `$ sudo chown abraham:abraham /media/NAS/abraham`
 1. Set permissions: `$ sudo chmod 755 /media/NAS/abraham`
-1. Create a user specific directory on the USB drive: `$ sudo mkdir /media/NAS/abraham`
-1. Set the user's 'home' directory: `$ sudo usermod -d /media/NAS/abraham abraham`
+1. Set the user's 'home' directory to the directory on the USB drive: `$ sudo usermod -d /media/NAS/abraham abraham`
 1. Edit the configuration file: `$ sudo nano /etc/vsftpd.conf`
 1. Make sure the following options are set:
 
@@ -65,3 +76,23 @@ ssl_enable=YES
 *note:* The above options may need to be either uncommented or manually set.
 
 1. `$ sudo systemctl restart vsftpd`
+
+## Connecting
+
+I have long used [FileZilla](https://filezilla-project.org/) for all my FTP needs. Any FTP client should do.
+
+1. Download and install [FileZilla](https://filezilla-project.org/download.php?type=client)
+1. Connect to the FTP server running on the Beaglebone Black:
+	1. Host: 10.79.20.99
+	1. Username: abraham
+	1. Password: (ask me on the discords)
+	1. Port: (leave blank)
+	1. Click Quickconnect
+
+![](images/fileZilla_01.png)
+
+1. Upload to and download from the `/movies/` directory
+
+![](images/fileZilla_02.png)
+
+**Enjoy!**
