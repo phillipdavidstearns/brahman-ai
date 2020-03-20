@@ -1,5 +1,5 @@
 ---
-- hosts: cluster000
+- hosts: cluster004
   become: yes
   gather_facts: no
   tasks:

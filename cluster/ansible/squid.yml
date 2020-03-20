@@ -1,0 +1,58 @@
+---
+- hosts: cluster_storage
+  gather_facts: no
+  become: yes
+  tasks:
+
+  - name: Install Squid
+    apt:
+      name: squid
+      state: latest
+
+  - name: Unmask Squid systemd unit
+    systemd:
+      name: squid
+      masked: no
+
+  - name: Enable Squid systemd unit
+    systemd:
+      name: squid
+      enabled: yes
+      state: stopped
+
+  - name: Restart Squid systemd unit
+    systemd:
+      daemon_reload: yes
+      daemon_reexec: yes
+      name: squid
+      state: restarted
+
+  - name: Make a backup of the conf file
+    copy:
+      src: /etc/squid/squid.conf
+      dest: /etc/squid/squid.conf.bak
+      remote_src: yes
+
+# sudo sed -i 's,#cache_dir ufs /var/spool/squid 100 16 256,cache_dir ufs /var/spool/squid 4096 16 256,' /etc/squid/squid.conf
+# sudo sed -i '\,acl localnet src 10.0.0.0/8,a acl localnet src 10.79.10.0/8' /etc/squid/squid.conf
+# sudo sed -i 's/#http_access allow localnet/http_access allow localnet/' /etc/squid/squid.conf
+  - name: Create 4GB disk storage at /var/spool/squid
+    lineinfile:
+      path: /etc/squid/squid.conf
+      backup: yes
+      regex: '^#cache_dir ufs /var/spool/squid 100 16 256'
+      line: 'cache_dir ufs /var/spool/squid 4096 16 256'
+
+  - name: Set localnet IP mask 10.79.0.0/16 to ACL
+    lineinfile:
+      path: /etc/squid/squid.conf
+      backup: yes
+      insertafter: '^#acl localnet src 10.0.0.0/8'
+      line: 'acl localnet src 10.79.0.0/16'
+
+  - name: Set localnet IP mask 10.79.0.0/16 to ACL
+    lineinfile:
+      path: /etc/squid/squid.conf
+      backup: yes
+      regex: '^#http_access allow localnet'
+      line: 'http_access allow localnet'

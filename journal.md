@@ -1,5 +1,41 @@
 # Journal
 
+## Feb 17 Mon
+
+* Reclocated the cluster and all internet infrastructure in ChaTusbo to a built in cabinet.
+* Installed two Ubiquity LiteAP antennas in place of the single NanoBeam.
+	* Restablished a link to Mars
+	* Relocating the ChaTsubo nano. Can connect briefy but the link isn't strong enough to properly bridge the networks
+
+## Feb 16 Sun
+
+* The Slabs
+* Movie Night on Mars
+
+## Feb 15 Sat
+
+* 1 hour of climbing
+* Setup security cam on the container
+* Extended solar storage to include 5 batteries of the 7 on hand.
+
+## Feb 14 Fri
+
+* Moved solar into the container to power the network
+
+## Feb 13 Thur
+
+* Moved network to the container
+* Pulled cluster000-003 from the cluster for gene to use
+
+## Feb 12 Wed
+
+* Picked up food at the community food drive.
+* Setup cluster000-003 for Gene to work with off the cluster
+
+## Feb 11 Tue
+
+* Cluster madness
+
 ## Feb 10 Mon
 
 * Got streaming from FFMpeg via RTP working on localhost and LAN, but it's janky

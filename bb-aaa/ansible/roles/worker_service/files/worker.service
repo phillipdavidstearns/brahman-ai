@@ -1,0 +1,14 @@
+[Unit]
+Description=worker.py service
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/bb-aaa/worker.conf
+Type=simple
+ExecStart=/usr/bin/python3 /home/cluster/bb-aaa/worker.py --conductor_port ${CONDUCTOR_PORT} --conductor_ip ${CONDUCTOR_IP} --syft_port ${SYFT_PORT} --name ${WORKER_NAME} --verbose
+Restart=on-success
+RestartPreventExitStatus=SIGTERM SIGKILL
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,21 @@
+---
+- hosts: bbaaa
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Clone brahman-ai fork of bb-aaa
+    git:
+      clone: yes
+      update: yes
+      repo: https://github.com/brahman-ai/bb-aaa
+      dest: /home/cluster/bb-aaa
+      force: yes
+
+  - name: Clone brahman-ai fork of PyGrid
+    git:
+      clone: yes
+      update: yes
+      repo: https://github.com/brahman-ai/PyGrid
+      dest: /home/cluster/PyGrid
+      force: yes

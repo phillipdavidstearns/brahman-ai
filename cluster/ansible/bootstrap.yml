@@ -28,7 +28,6 @@
     user:
       name: cluster
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: yes
       state: present
@@ -36,11 +35,21 @@
 
 #------------------------------------------------------
 
+  - name: Add user 'abraham'
+    user:
+      name: abraham
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      create_home: yes
+      home: /run/vsftpd/data
+      append: yes
+      state: present
+
+#------------------------------------------------------
+
   - name: Add user 'phillipstearns'
     user:
       name: phillipstearns
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: no
       state: present

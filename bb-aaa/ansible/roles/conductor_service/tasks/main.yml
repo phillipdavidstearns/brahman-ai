@@ -1,0 +1,17 @@
+- name: Copy conductor.service unit to /etc/systemd/system/
+  copy:
+    src: conductor.service
+    dest: /etc/systemd/system/
+    mode: '644'
+
+- name: Make sure conductor.service is disabled
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+    name: conductor.service
+    enabled: no
+
+- name: Stop conductor.service
+  systemd:
+    name: conductor.service
+    state: stopped

@@ -1,0 +1,61 @@
+---
+- hosts: portal
+  gather_facts: no
+  become: yes
+  tasks:
+
+    - name: Install dbus and omxplayer
+      apt:
+        name: [ dbus, python3-dbus, python-dbus, omxplayer ]
+        update_cache: yes
+
+    - name: Create folder /opt/omxplayer-sync/ for omxplayer-sync
+      file:
+        path: "/opt/omxplayer-sync/"
+        state: directory
+        owner: portal
+        group: portal
+
+    - name: Download omxplayer-sync
+      copy:
+        src: ./files/omxplayer-sync
+        dest: "/opt/omxplayer-sync/omxplayer-sync"
+        mode: '0755'
+        owner: portal
+        group: portal
+
+    - name: Symlink /opt/omxplayer-sync/omxplayer-sync to /usr/local/bin
+      file:
+        src: "/opt/omxplayer-sync/omxplayer-sync"
+        path: "/usr/local/bin/omxplayer-sync"
+        state: link
+
+    - name: Create folder /usr/share/omxplayer-sync for synctest.mp4 file
+      file:
+        path: "/usr/share/omxplayer-sync/"
+        state: directory
+        owner: portal
+        group: portal
+
+    - name: Upload synctest.mp4 to /usr/share/omxplayer-sync/
+      copy:
+        src: ./files/synctest.mp4
+        dest: "/usr/share/omxplayer-sync/"
+        owner: portal
+        group: portal
+
+#### Is all this really necessary?
+# sudo su
+# apt-get remove omxplayer
+# apt-get install libpcre3 fonts-freefont-ttf fbset libssh-4 python3-dbus libssl1.0.2 -y
+# wget https://github.com/magdesign/PocketVJ-CP-v3/raw/master/sync/omxplayer_0.3.7-git20170130-62fb580_armhf.deb
+# dpkg -i omxplayer_0.3.7~git20170130~62fb580_armhf.deb (This will give an error about a missing dependency for libssl1.0.0. Install libssl1.0.2 instead in the next step.)
+# apt --fix-broken install (This will reinstall omxplayer properly. Test that omxplayer is installed by typing "omxplayer --help" in the command line.)
+#### Why not just...
+# sudo apt-get update
+# sudo apt-get install omxplayer -y
+#### And then... 
+# sudo wget -O /usr/bin/omxplayer-sync https://github.com/turingmachine/omxplayer-sync/raw/master/omxplayer-sync
+# sudo chmod 0755 /usr/bin/omxplayer-sync
+# sudo sudo mkdir /usr/share/omxplayer-sync
+# sudo wget -O /usr/share/omxplayer-sync/synctest.mp4 https://github.com/turingmachine/omxplayer-sync/raw/master/synctest.mp4

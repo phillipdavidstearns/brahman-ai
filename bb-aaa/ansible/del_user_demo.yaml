@@ -1,0 +1,33 @@
+---
+- hosts: pis
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Enable Password Authentication
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication'
+      line: "PasswordAuthentication no"
+      state: present
+
+  - name: Remove user 'demo'
+    user:
+      name: demo
+      remove: yes
+      state: absent
+
+  - name: Remove home directory of user 'demo' 
+    file:
+      path: /home/demo
+      state: absent
+
+
+  - name: Restart ssh and sshd services
+    systemd:
+      daemon_reload: yes
+      name: "{{ item }}"
+      state: restarted
+    with_items:
+    - sshd.service
+    - ssh.service

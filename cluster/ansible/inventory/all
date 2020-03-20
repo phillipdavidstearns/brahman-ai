@@ -26,7 +26,7 @@ cluster019 ansible_host=10.79.20.119
 
 [beagles]
 
-cluster_storage ansible_host=10.79.20.99
+clusterNAS ansible_host=10.79.20.99
 k8s_controller ansible_host=10.79.20.254
 
 [controller]
@@ -35,13 +35,13 @@ k8s_controller
 
 [storage]
 
-cluster_storage
+clusterNAS
 
 #-------------------------------------------------
 # active
 
 [active]
-cluster0[04:19]
+cluster0[04:15]
 
 [active:children]
 beagles
@@ -77,7 +77,7 @@ conductor_ip=10.79.20.100
 #cluster014 ansible_host=10.79.20.114 ansible_user=pi ansible_ssh_pass=raspberry
 #cluster015 ansible_host=10.79.20.115 ansible_user=pi ansible_ssh_pass=raspberry
 
-#cluster_storage ansible_host=10.79.20.99 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
+#clusterNAS ansible_host=10.79.20.99 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
 #k8s_controller ansible_host=10.79.20.254 ansible_user=debian ansible_ssh_pass=temppwd ansible_sudo_pass=temppwd
 
 #-------------------------------------------------

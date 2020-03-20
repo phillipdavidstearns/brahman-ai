@@ -1,6 +1,6 @@
 # Setting Up A Raspberry
 
-## Flashing and Connecting
+## Flashing and Connecting (on a Mac)
 
 * Copy BalenaEtcher and Raspbian ISO from the thumbdrive
 * Flash MicroSD with Raspbian

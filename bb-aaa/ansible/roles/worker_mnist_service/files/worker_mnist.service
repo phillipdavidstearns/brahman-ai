@@ -1,0 +1,14 @@
+[Unit]
+Description=worker_mnist service
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/bb-aaa/worker_mnist.conf
+Type=simple
+ExecStart=/usr/bin/python3 /home/cluster/bb-aaa/run_worker_mnist.py --port ${WORKER_PORT} --host ${WORKER_HOST_IP} --id ${WORKER_ID}
+Restart=on-success
+RestartPreventExitStatus=SIGTERM SIGKILL
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,51 @@
+---
+- hosts: cluster004
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Download signing keys
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: "{{ item }}"
+      state: present
+    with_items:
+      - 04EE7237B7D453EC
+      - 648ACFD622F3D138
+
+  - name: Update installed packages
+    apt:
+      update_cache: yes
+      upgrade: yes
+
+  - name: Install "raspberrypi-kernel-headers"
+    apt:
+      name: raspberrypi-kernel-headers
+      update_cache: no
+
+  - name: Install rpi-source required packages
+    apt:
+      name: [ bc, libncurses5-dev ]
+
+  - name: Upload unstable.list to /etc/apt/sources.list.d/
+    copy:
+      src: unstable.list
+      dest: /etc/apt/sources.list.d/
+
+  - name: Install dirmngr
+    apt:
+      name: dirmngr
+      update_cache: yes
+
+  - name: upload limit-unstable to /etc/apt/preferences.d/
+    copy:
+      src: limit-unstable
+      dest: /etc/apt/preferences.d/
+
+  - name: Install WireGuard
+    apt:
+      name: wireguard
+      update_cache: yes
+
+# Best practice is to reboot when complete, just in case new headers were installed and your kernel upgraded
+# may need to `modprobe wireguard` after reboot inorder for wg-quick to work

@@ -31,13 +31,12 @@
     user:
       name: cluster
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: no
       state: present
       groups: sudo
 
-- name: Set authorized key for cluster to 'cluster'
+  - name: Set authorized key for cluster to 'cluster'
     authorized_key:
       user: cluster
       state: present
@@ -50,7 +49,6 @@
     user:
       name: phillipstearns
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: no
       state: present
@@ -67,11 +65,27 @@
 
 #------------------------------------------------------
 
+  - name: Add user 'seva'
+    user:
+      name: seva
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for 'seva'
+    authorized_key:
+      user: seva
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAtQU8y0f2fwqC3+YdcpCEaQXnCIhoUlAx6DlM/5PiPyCJ3rZs3hebLErop5IKeFHp2POYLl3BApYjyvMJGtHEySkvJhn1AoJrwbXi9TmduRpfsSjoxDkbSKKriyWXfooaWaP5IApzH4hR+jlLZ7jA2gOSCM28xLD9c4YXcl4XGw0= seva@sevatech.com"
+
+#------------------------------------------------------
+
   - name: Add user 'alejandro'
     user:
       name: alejandro
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: no
       state: present
@@ -83,19 +97,12 @@
       state: present
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJnz6oJvrXU+A3lCfE3vJf02lG1jysboAhghSN7ljeJEHrs1WIg3kjI3HcYraVc6cEvppsMwZ2EC1i4mmU3DhCU1BFtqr4JPPSVry98MWASBdX3Oy+VU2e4pKLy+kAG83MvNDeDOJkZFa+PKAKE5vIIww8GzN1snvRLd23go65fMZukPjzkyxpOfYWOANxLq7CZeS+fWG1yucgSv5yRS6Zd5urPUpbe9DgEsvpNN2PuZnddlepwDrSzs+AB2wHw6vuq8Luwshx8NpvyweF/DqMAii/6IAAOIzxdosbqeFkqdR3iuD5daIjYsrXW91Wg2Y/kcvJQF/X3RbNfLC9c0rFoygD9fPXV4ridHlrfg5OhkAoHZnmE9i4IwdtrAhDaTuZQ3c4uWvPBWY1mVjxesZo4PtJ1uRElgqB2WW8VPvYoZ4i7b1uORlN1n/O6QwnZOHyUccCvHMNgDk6mEcKTHdEgn5thfnpDnD8IywAmaC56tbja2L+Bgr26I3qRFdJWL23r58bsJsb3XGOaGzAc20T6ibEVKkmhzqlhg71yVp4ZF9HDxm+B774pNnvGlvEUbr1D8DeaHr5RYoCtNBNlf5UhV7/Wqi38Cq78HcYvX037oBel+/xkS4SRMByG4jteihhUFXg3xWBhbJIFbrj8Bjy2kZdpF11EY06un9eUHMRoQ== alejandrosanchzmedina@gmail.com"
 
-  - name: remove key of alejandro from cluster
-    authorized_key:
-      user: cluster
-      state: absent
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJnz6oJvrXU+A3lCfE3vJf02lG1jysboAhghSN7ljeJEHrs1WIg3kjI3HcYraVc6cEvppsMwZ2EC1i4mmU3DhCU1BFtqr4JPPSVry98MWASBdX3Oy+VU2e4pKLy+kAG83MvNDeDOJkZFa+PKAKE5vIIww8GzN1snvRLd23go65fMZukPjzkyxpOfYWOANxLq7CZeS+fWG1yucgSv5yRS6Zd5urPUpbe9DgEsvpNN2PuZnddlepwDrSzs+AB2wHw6vuq8Luwshx8NpvyweF/DqMAii/6IAAOIzxdosbqeFkqdR3iuD5daIjYsrXW91Wg2Y/kcvJQF/X3RbNfLC9c0rFoygD9fPXV4ridHlrfg5OhkAoHZnmE9i4IwdtrAhDaTuZQ3c4uWvPBWY1mVjxesZo4PtJ1uRElgqB2WW8VPvYoZ4i7b1uORlN1n/O6QwnZOHyUccCvHMNgDk6mEcKTHdEgn5thfnpDnD8IywAmaC56tbja2L+Bgr26I3qRFdJWL23r58bsJsb3XGOaGzAc20T6ibEVKkmhzqlhg71yVp4ZF9HDxm+B774pNnvGlvEUbr1D8DeaHr5RYoCtNBNlf5UhV7/Wqi38Cq78HcYvX037oBel+/xkS4SRMByG4jteihhUFXg3xWBhbJIFbrj8Bjy2kZdpF11EY06un9eUHMRoQ== alejandrosanchzmedina@gmail.com"
-
 #------------------------------------------------------
 
   - name: Add user 'gene'
     user:
       name: gene
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: no
       state: present
@@ -107,19 +114,12 @@
       state: present
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzG55yhLNiLl9+OhtQf8hij/FiWZZhcdqm97ZAJbxfML+KN/eHUqmwOTPDlGwOmDuy6Io9gybv5mnW8EBQOLMv+AMPwMGqJQIGdHzqSBdJFRmGO+v8W8VPkWZOcsWy34SKfYtAXp7cGvLCv/xlAAIYOT63Al/XZo0yeJRIJPw62Gr9j1qyFGZr/2A5PcA6cYFxIzpdJpube0KrllJ6mASZCzGkhNpv+PeKlwQBbTv4/TbU8hD32aUbe2h/7tOO9ICcoGYK9OqmHQ1iAmLAmIxIS7Ww+w13h1L/fDYoPkr48/zGuGTnzcLaYJWTlzo+ZHjh5zIPvy77Nl0y1ak85rmZ gene@Genes-MacBook-Pro.local"
 
-  - name: Remove key of gene from cluster
-    authorized_key:
-      user: cluster
-      state: absent
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzG55yhLNiLl9+OhtQf8hij/FiWZZhcdqm97ZAJbxfML+KN/eHUqmwOTPDlGwOmDuy6Io9gybv5mnW8EBQOLMv+AMPwMGqJQIGdHzqSBdJFRmGO+v8W8VPkWZOcsWy34SKfYtAXp7cGvLCv/xlAAIYOT63Al/XZo0yeJRIJPw62Gr9j1qyFGZr/2A5PcA6cYFxIzpdJpube0KrllJ6mASZCzGkhNpv+PeKlwQBbTv4/TbU8hD32aUbe2h/7tOO9ICcoGYK9OqmHQ1iAmLAmIxIS7Ww+w13h1L/fDYoPkr48/zGuGTnzcLaYJWTlzo+ZHjh5zIPvy77Nl0y1ak85rmZ gene@Genes-MacBook-Pro.local"
-
 #------------------------------------------------------
 
   - name: Add user 'sophia'
     user:
       name: sophia
       password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      shell: /bin/bash
       create_home: yes
       append: no
       state: present
@@ -133,8 +133,58 @@
 
 #------------------------------------------------------
 
+  - name: Add user 'dxk'
+    user:
+      name: dxk
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
 
+  - name: Add user 'dxk'
+    authorized_key:
+      user: dxk
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkgtsR+T6mo44ZbKSODdMNWnZcRF5qXKPmnII5DtRKVnO7YSJt0VA405AItLF00zWfYS7l4ytLItUjEL7QPRTx+siGwh7U2My1XbdMaqYoZKETwdt3a0WN4jBzdwMiZLOJFL64he0bjTkaKb09wojZVsAy+7XD+C4yEM9UbzdwOjwJ59YMZ1xnHx+wh+yZqbRxcU53e74KrAugX16RUOO14NLUzvQTBmHgR2ZMbsd13MTXGPywG89lAAPCZgOpjjWZHExacpwkR1+6/pn7MCP+bnHlByJUZS/N75EaY/VDtXTac9lwu50KT64A0jtDUGDUagj3ZTMAbcDE6Dzf+Nzx dxk@dxk-xps2"
+      
+#------------------------------------------------------
 
+  - name: Add user 'arkadiy'
+    user:
+      name: arkadiy
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
 
+  - name: Remove authorized key for 'arkadiy' from 'seva'
+    authorized_key:
+      user: seva
+      state: absent
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC25dADK2TcollcIs9kMTVoAko/oHLPLAHJO3wem50ew3Cufw8xurW71oWd/ffYiXtuA5nVxA/AYRB2Sr2j5c6b5V/YFygUfeWu6Soxu0PH9S8WlqUPMJ7/KHiYgsfG6uAlWIrjGAupSmcVrz0I4WJE+dokHsxVIFyQvGZMh6TGLv6v0n7CpbOPhdChou/OmsYNH5XjrISIllaYfio6g1EhQST2LKr9kP1AupeJ2nqD6NnKw3IWJVTuXPY7SYgZW2x5ZXPI1hLWVbJXB8/tWzHpElkQmuMe+uBP+QHZbw8G7qRaV6N6Wr+8H0O7TZblZYpRElEI+IGe4zSnmqKkYje9 arkadiy@carbon"
+  
+  - name: Set authorized key for 'arkadiy'
+    authorized_key:
+      user: arkadiy
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC25dADK2TcollcIs9kMTVoAko/oHLPLAHJO3wem50ew3Cufw8xurW71oWd/ffYiXtuA5nVxA/AYRB2Sr2j5c6b5V/YFygUfeWu6Soxu0PH9S8WlqUPMJ7/KHiYgsfG6uAlWIrjGAupSmcVrz0I4WJE+dokHsxVIFyQvGZMh6TGLv6v0n7CpbOPhdChou/OmsYNH5XjrISIllaYfio6g1EhQST2LKr9kP1AupeJ2nqD6NnKw3IWJVTuXPY7SYgZW2x5ZXPI1hLWVbJXB8/tWzHpElkQmuMe+uBP+QHZbw8G7qRaV6N6Wr+8H0O7TZblZYpRElEI+IGe4zSnmqKkYje9 arkadiy@carbon"
 
+#------------------------------------------------------
+
+  - name: Add user 'vs'
+    user:
+      name: vs
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for 'vs'
+    authorized_key:
+      user: vs
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmU1phigCktpQ3CyQ8SzshfdLfDo5rlyuM9w71SH0xHIdy5nUz5HCvyXDQJhj9/dWTWOjRhzICa2ojMfeqDE4zmxd7FCrHpNYJhrB3dNl6dPUOlZ9x66WTzlZNY0MDb5ezwA/zP9f2hHqOyD/W1D4n47tRdd1lBLHVFfVDLLHmpvmU+rvwGZ+bviQKhv5frQ/xaAAeSZAMiTbAr6aVq8Al7Gzo3X5jODcYiwAtF/Zkv9nPxc0DOeoZSbWfA3lsFPpxhvmTpVVSoX4B+DcbbHejaDrP+cL6sgGKOyymzLDGMECOPVA7nh2i4s5KMP+9SLBn7onA6WvbqPM9RZe7FO8X andrew@vaporstack.org"
 

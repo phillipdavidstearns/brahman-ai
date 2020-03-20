@@ -1,0 +1,66 @@
+---
+- hosts: active
+  gather_facts: no
+  become: yes
+  tasks:
+  vars:
+    home_dir: "/home/portal"
+    oF_dir: "/home/portal/openFrameworks"
+
+#sudo apt-get clean
+#sudo apt-get update
+#sudo apt-get upgrade
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Upgrade packages
+      apt:
+        upgrade: full
+
+    - name: Clean and remove packages
+      apt:
+        autoclean: yes
+        autoremove: yes
+
+#wget https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linuxarmv6l_release.tar.gz
+#mkdir openFrameworks
+#tar vxfz of_v0.11.0_linuxarmv6l_release.tar.gz -C openFrameworks --strip-components 1
+
+    - name: Upload openFrameworks
+      copy:
+        src: "of_v0.11.0_linuxarmv6l_release.tar.gz"
+        dest: "{{ home_dir }}"
+
+    - name: Create /home/portal/openFrameworks/
+      file:
+        path: "{{ oF_dir }}"
+        state: directory
+
+    - name: Unarchive of_v0.11.0_linuxarmv6l_release.tar.gz
+      command:
+        chdir: "{{ home_dir }}"
+        cmd: "tar vxfz of_v0.11.0_linuxarmv6l_release.tar.gz -C openFrameworks --strip-components 1"
+
+#cd /home/pi/openFrameworks/scripts/linux/debian
+#sudo ./install_dependencies.sh
+
+    - name: install dependencies
+      command:
+        chdir: "{{oF_dir}}/scripts/linux/debian/"
+        cmd: "sh install_dependencies.sh"
+
+#make Release -C /home/pi/openFrameworks/libs/openFrameworksCompiled/project
+
+    - name: Run "make Release -C /home/portal/openFrameworks/libs/openFrameworksCompiled/project"
+      command:
+        cmd: "make Release -C {{ oF_dir }}/libs/openFrameworksCompiled/project"
+
+#cd /home/pi/openFrameworks/examples/graphics/polygonExample
+#make
+#make run
+
+    - name: Compile an example
+      make:
+        chdir: "{{ oF_dir }}/examples/graphics/polygonExample"

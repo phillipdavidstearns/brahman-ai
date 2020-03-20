@@ -1,0 +1,160 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Allow 'sudo' group to have passwordless sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%sudo'
+      line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+      validate: 'visudo -cf %s'
+
+  - name: Create Group 'wheel'
+    group:
+      name: wheel
+      state: present
+
+  - name: Allow wheel group to have password authenticated sudo
+    lineinfile:
+      dest: /etc/sudoers
+      state: present
+      regexp: '^%wheel'
+      line: '%wheel ALL=(ALL) ALL'
+      validate: 'visudo -cf %s'
+
+#------------------------------------------------------
+
+  - name: Add user 'cluster'
+    user:
+      name: cluster
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: sudo
+
+  - name: Set authorized key for cluster to 'cluster'
+    authorized_key:
+      user: cluster
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDKj/i9ARjxhdmDWWANgeIUFzAxK8jagct172rq78zY8rXfkz+6of+fmE9pUgYii/xTcuu4RSHhG8edf6Dv712Lt6jq5ItY1cI/CdXKAl4rmQ7P+1DVs+CCr2IkrNlFva4llIAb0gbG+XEv5N8cXOiZa+SJcsfhnacNFbESwW4RU5Km4v1gYIO+1UWKM3Gj5bqMeYpvtkJEJtnCGYrO+OjdmSm3YvPwbfKIZGrbnbN+U88TRVezxWlAXR6C4Ur/qwVL1XZZOxBHlSQbxb+tVdnGzHB+bZOz2cooXg6qyORlk2nyWi62V5SNpSKKRavGZgDA2hWSRXxVcD0PyXxnAmTh cluster@cluster000"
+
+
+#------------------------------------------------------
+
+  - name: Add user 'phillipstearns'
+    user:
+      name: phillipstearns
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: sudo
+
+  - name: Set authorized key for Phillip to 'cluster' and 'phillipstearns'
+    authorized_key:
+      user: "{{ item }}"
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYS3HXGzz8v0ZBBiVhuObUlW+p6NRVcWlxfll/m+UbUp9h+TOSycKilJaUOmx/UmJ0kvb9pB5zwQjmFwYcBHDTUTeoau1YiJhlh2g3CkNXdw8oxpsIXvs3rXfHMv7V9BqtFkiSOG5IPNtdZ6m6tkocefwTWkowDCJEb1mqyEQIcgjxubjlqAjFtDVIVaR4RoWAEVBGRaCXbnMKDGiki1M/n2svm95mJiJ406nWbSE+cHhL97xkJbjh06kfvUhY3E1qOJhMfXY4lVRdGiZmAWA45JfxLrtCXhyBIK0jxyztcG8HKRKa8RZ4pvc8I0XHBMhNYXAO2hqpztgVJZzjoM/5 phillipstearns@MacBook"
+    with_items:
+        - cluster
+        - phillipstearns
+
+#------------------------------------------------------
+
+  - name: Add user 'seva'
+    user:
+      name: seva
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for 'seva'
+    authorized_key:
+      user: seva
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAtQU8y0f2fwqC3+YdcpCEaQXnCIhoUlAx6DlM/5PiPyCJ3rZs3hebLErop5IKeFHp2POYLl3BApYjyvMJGtHEySkvJhn1AoJrwbXi9TmduRpfsSjoxDkbSKKriyWXfooaWaP5IApzH4hR+jlLZ7jA2gOSCM28xLD9c4YXcl4XGw0= seva@sevatech.com"
+
+#------------------------------------------------------
+
+  - name: Add user 'alejandro'
+    user:
+      name: alejandro
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for Alejandro to 'alejandro'
+    authorized_key:
+      user: alejandro
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDJnz6oJvrXU+A3lCfE3vJf02lG1jysboAhghSN7ljeJEHrs1WIg3kjI3HcYraVc6cEvppsMwZ2EC1i4mmU3DhCU1BFtqr4JPPSVry98MWASBdX3Oy+VU2e4pKLy+kAG83MvNDeDOJkZFa+PKAKE5vIIww8GzN1snvRLd23go65fMZukPjzkyxpOfYWOANxLq7CZeS+fWG1yucgSv5yRS6Zd5urPUpbe9DgEsvpNN2PuZnddlepwDrSzs+AB2wHw6vuq8Luwshx8NpvyweF/DqMAii/6IAAOIzxdosbqeFkqdR3iuD5daIjYsrXW91Wg2Y/kcvJQF/X3RbNfLC9c0rFoygD9fPXV4ridHlrfg5OhkAoHZnmE9i4IwdtrAhDaTuZQ3c4uWvPBWY1mVjxesZo4PtJ1uRElgqB2WW8VPvYoZ4i7b1uORlN1n/O6QwnZOHyUccCvHMNgDk6mEcKTHdEgn5thfnpDnD8IywAmaC56tbja2L+Bgr26I3qRFdJWL23r58bsJsb3XGOaGzAc20T6ibEVKkmhzqlhg71yVp4ZF9HDxm+B774pNnvGlvEUbr1D8DeaHr5RYoCtNBNlf5UhV7/Wqi38Cq78HcYvX037oBel+/xkS4SRMByG4jteihhUFXg3xWBhbJIFbrj8Bjy2kZdpF11EY06un9eUHMRoQ== alejandrosanchzmedina@gmail.com"
+
+#------------------------------------------------------
+
+  - name: Add user 'gene'
+    user:
+      name: gene
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for Gene to 'gene'
+    authorized_key:
+      user: gene
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCzG55yhLNiLl9+OhtQf8hij/FiWZZhcdqm97ZAJbxfML+KN/eHUqmwOTPDlGwOmDuy6Io9gybv5mnW8EBQOLMv+AMPwMGqJQIGdHzqSBdJFRmGO+v8W8VPkWZOcsWy34SKfYtAXp7cGvLCv/xlAAIYOT63Al/XZo0yeJRIJPw62Gr9j1qyFGZr/2A5PcA6cYFxIzpdJpube0KrllJ6mASZCzGkhNpv+PeKlwQBbTv4/TbU8hD32aUbe2h/7tOO9ICcoGYK9OqmHQ1iAmLAmIxIS7Ww+w13h1L/fDYoPkr48/zGuGTnzcLaYJWTlzo+ZHjh5zIPvy77Nl0y1ak85rmZ gene@Genes-MacBook-Pro.local"
+
+#------------------------------------------------------
+
+  - name: Add user 'sophia'
+    user:
+      name: sophia
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Add user 'sophia'
+    authorized_key:
+      user: sophia
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0yybi4oLsf35tIK1L8VVvJIBeNX6x+5Qa+qKWCiSC8c0epwZ+qsW3angeYWPc4C0IRGya/GRgjmqQG3m/tr33VDdkeZ0k0jubU+Cj2d/ffssywkoVL1xP2OHZXInhg0oW2Tt0OM9OK+Z76/aLRmRPyL0aCz7kyvWm+q+KbiRABtb08P0v94RSkoNNY+ws1Z4TBWZ1nULzG+nxqYUb6RHoA18CJuRIjtLyJw1Y7hcXR1OFUrlxa7IksTsr8Cl2ypmUDxUHJIPPZP4kgRI0rLmu5oLP3Phjwo+Glc3QCBmmb7H23Ip9Ujkeyf3hT6v5OIwp1yWHuqyWCXkpSly7pu3n sophiasun@Sophias-MacBook-Pro.local"
+
+#------------------------------------------------------
+
+  - name: Add user 'dxk'
+    user:
+      name: dxk
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Add user 'dxk'
+    authorized_key:
+      user: dxk
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDkgtsR+T6mo44ZbKSODdMNWnZcRF5qXKPmnII5DtRKVnO7YSJt0VA405AItLF00zWfYS7l4ytLItUjEL7QPRTx+siGwh7U2My1XbdMaqYoZKETwdt3a0WN4jBzdwMiZLOJFL64he0bjTkaKb09wojZVsAy+7XD+C4yEM9UbzdwOjwJ59YMZ1xnHx+wh+yZqbRxcU53e74KrAugX16RUOO14NLUzvQTBmHgR2ZMbsd13MTXGPywG89lAAPCZgOpjjWZHExacpwkR1+6/pn7MCP+bnHlByJUZS/N75EaY/VDtXTac9lwu50KT64A0jtDUGDUagj3ZTMAbcDE6Dzf+Nzx dxk@dxk-xps2"
+      
+
+
+

@@ -1,0 +1,17 @@
+---
+- hosts: bootstrap
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: debug
+      debug:
+        msg: "{{ item }}"
+      with_items:
+        - "Host: {{ ansible_host}}"
+        - "User: {{ ansible_user }}"
+        - "SSH Pass: {{ ansible_ssh_pass }}"
+        - "Become Pass: {{ ansible_become_pass }}"
+
+  roles:
+  - bootstrap

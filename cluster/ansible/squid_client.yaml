@@ -1,0 +1,14 @@
+---
+- hosts: active
+  gather_facts: no
+  become: yes
+  become_user: cluster
+  tasks:
+
+  - name: Redirect git requests to squid server
+    blockinfile:
+      path: ~/.gitconfig
+      block: |
+        [http "https://github.com"]
+          proxy = http://10.79.20.99:3128
+          sslVerify = false

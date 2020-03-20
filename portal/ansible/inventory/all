@@ -1,0 +1,33 @@
+[portal]
+portal01	ansible_host=10.79.103.101
+portal02	ansible_host=10.79.103.102
+portal03	ansible_host=10.79.103.103
+portal04	ansible_host=10.79.103.104
+portal05	ansible_host=10.79.103.105
+portal06	ansible_host=10.79.103.106
+portal07	ansible_host=10.79.103.107
+portal08	ansible_host=10.79.103.108
+portal09	ansible_host=10.79.103.109
+portal10	ansible_host=10.79.103.110
+portal11	ansible_host=10.79.103.111
+portal12	ansible_host=10.79.103.112
+portal13	ansible_host=10.79.103.113
+portal14	ansible_host=10.79.103.114
+portal15	ansible_host=10.79.103.115
+portal16	ansible_host=10.79.103.116
+portal17	ansible_host=10.79.103.117
+portal18	ansible_host=10.79.103.118
+
+[portal:vars]
+ansible_user=portal
+
+[bootstrap]
+
+[bootstrap:children]
+#portal
+
+[bootstrap:vars]
+ansible_user=pi
+ansible_ssh_user=pi
+ansible_ssh_pass=raspberry
+ansible_become_pass=raspberry

@@ -1,0 +1,40 @@
+---
+- hosts: cluster_storage
+  become: yes
+  gather_facts: no
+
+  - name: Upgrade Installed Packages
+    apt:
+      update_cache: yes
+      upgrade: dist
+
+  - name: Install Necessary Packages
+    apt:
+      update-cache: no
+      name: [ python3-pip ]
+
+  - name: Install devpi-server, devpi-web and supervisor
+    pip:
+      name: [ devpi-server, devpi-web, supervisor ]
+
+  - name: Initialize devpi-server
+    command: devpi-init
+
+  - name: Generate config files for devpi-server execution
+    command: devpi-gen-config
+
+  - name: Spin up devpi-server with supervisor
+    command: supervisord -c gen-config/supervisord.conf
+
+# stop the server:
+
+# $ supervisorctl -c gen-config/supervisord.conf stop devpi-server
+# devpi-server: stopped
+
+# start the server:
+
+# $ supervisorctl -c gen-config/supervisord.conf start devpi-server
+# devpi-server: started
+
+# supervisorctl -c gen-config/supervisord.conf shutdown
+# Shut down

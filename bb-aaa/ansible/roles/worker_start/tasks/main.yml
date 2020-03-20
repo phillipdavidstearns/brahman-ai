@@ -1,0 +1,4 @@
+- name: Start worker.service
+  systemd:
+    name: worker.service
+    state: started

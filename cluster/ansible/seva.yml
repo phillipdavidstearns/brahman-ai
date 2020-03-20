@@ -1,0 +1,21 @@
+---
+- hosts: active
+  gather_facts: no
+  become: yes
+  tasks:
+
+  - name: Add user 'seva'
+    user:
+      name: seva
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: sudo
+
+  - name: Set authorized key for 'seva'
+    authorized_key:
+      user: seva
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEAtQU8y0f2fwqC3+YdcpCEaQXnCIhoUlAx6DlM/5PiPyCJ3rZs3hebLErop5IKeFHp2POYLl3BApYjyvMJGtHEySkvJhn1AoJrwbXi9TmduRpfsSjoxDkbSKKriyWXfooaWaP5IApzH4hR+jlLZ7jA2gOSCM28xLD9c4YXcl4XGw0= seva@sevatech.com"

@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+
+  - name: Change hostname to inventory_hostname in /etc/hostname
+    hostname:
+      name: "{{ inventory_hostname }}"
+
+  - name: Change hostname to inventory_hostname in /etc/hosts
+    lineinfile:
+      path: /etc/hosts
+      regex: '^127\.0\.1\.1'
+      line: "127.0.1.1  {{ inventory_hostname }}"
+

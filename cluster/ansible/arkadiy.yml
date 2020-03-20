@@ -1,0 +1,21 @@
+---
+- hosts: active
+  gather_facts: no
+  become: yes
+  tasks:
+
+  - name: Add user 'arkadiy'
+    user:
+      name: arkadiy
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      shell: /bin/bash
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for 'arkadiy'
+    authorized_key:
+      user: arkadiy
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC25dADK2TcollcIs9kMTVoAko/oHLPLAHJO3wem50ew3Cufw8xurW71oWd/ffYiXtuA5nVxA/AYRB2Sr2j5c6b5V/YFygUfeWu6Soxu0PH9S8WlqUPMJ7/KHiYgsfG6uAlWIrjGAupSmcVrz0I4WJE+dokHsxVIFyQvGZMh6TGLv6v0n7CpbOPhdChou/OmsYNH5XjrISIllaYfio6g1EhQST2LKr9kP1AupeJ2nqD6NnKw3IWJVTuXPY7SYgZW2x5ZXPI1hLWVbJXB8/tWzHpElkQmuMe+uBP+QHZbw8G7qRaV6N6Wr+8H0O7TZblZYpRElEI+IGe4zSnmqKkYje9 arkadiy@carbon"

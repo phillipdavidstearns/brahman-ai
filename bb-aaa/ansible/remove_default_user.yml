@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  tasks:
+
+  # - name: 
+  #   debug:
+  #     msg: "{{ default_user }}"
+
+  - name: Remove the user {{ default_user }}
+    user:
+      name: "{{ default_user }}"
+      state: absent
+      remove: yes

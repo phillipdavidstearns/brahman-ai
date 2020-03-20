@@ -1,4 +1,0 @@
----
-# file: group_vars/core
-default_user: pi
-ansible_user: cluster

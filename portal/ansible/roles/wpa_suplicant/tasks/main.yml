@@ -1,0 +1,11 @@
+---
+- name: Add BRAHMAN-AI network to wpa_supplicant
+  blockinfile:
+    path: /etc/wpa_supplicant/wpa_supplicant.conf
+    block: |
+      network={
+        ssid="BRAHMAN-AI"
+        key_mgmt=WPA-PSK
+        psk="theall&everything"
+        priority=9
+      }
