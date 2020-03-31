@@ -1,4 +1,4 @@
-# Setting Up A Raspberry With Anisble
+# Setting Up A Raspberry With Ansible
 
 A guide to using Ansible to setup and configure an arbitrary number of rapsberry pis (RPis) on a wifi network.
 
