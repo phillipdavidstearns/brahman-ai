@@ -1,0 +1,8 @@
+---
+ansible_become: True
+ansible_become_method: sudo
+endpoint_ip: "23.95.213.211"
+wireguard_port: "31337"
+server_ip: "10.42.0.1"
+vpn_subnet: "10.42.0.0/24"
+wg_interface_name: "wg0"

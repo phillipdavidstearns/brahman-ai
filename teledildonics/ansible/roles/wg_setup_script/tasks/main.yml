@@ -1,0 +1,13 @@
+---
+- name: Copy wg_setup script to "{{ inventory_hostname }}"
+  copy:
+    src: wg_setup.sh
+    dest: /usr/local/src/wg_setup/
+    mode: 0755
+
+- name: Symlink wg_setup.sh to /usr/local/bin/wg_setup
+  file:
+    src: /usr/local/src/wg_setup/wg_setup.sh
+    dest: /usr/local/bin/wg_setup
+    state: link
+    mode: 0755

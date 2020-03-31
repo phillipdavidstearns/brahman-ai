@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: active
   become: yes
   gather_facts: no
   tasks:
@@ -24,6 +24,32 @@
       regexp: '^%wheel'
       line: '%wheel ALL=(ALL) ALL'
       validate: 'visudo -cf %s'
+
+#------------------------------------------------------
+
+  - name: Change root password
+    user:
+      name: root
+      password: "$6$YSB/2PA4Fx7myMnv$eUsCUSwkewWxt/y5oT82ykjSzlTHmY0UKwuBfMm2nre6xX3HUXvlSLcaeVZFepDrLroMYwJezkqq6if2MSqph."
+
+  - name: Disable Password Authentication
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication'
+      line: "PasswordAuthentication no"
+      state: present
+ 
+  - name: Disable Root Login
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: '^PermitRootLogin'
+      line: "PermitRootLogin no"
+      state: present
+
+  - name: restart ssh
+    service:
+      name: sshd
+      state: restarted
 
 #------------------------------------------------------
 
@@ -159,12 +185,6 @@
       state: present
       groups: wheel
 
-  - name: Remove authorized key for 'arkadiy' from 'seva'
-    authorized_key:
-      user: seva
-      state: absent
-      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC25dADK2TcollcIs9kMTVoAko/oHLPLAHJO3wem50ew3Cufw8xurW71oWd/ffYiXtuA5nVxA/AYRB2Sr2j5c6b5V/YFygUfeWu6Soxu0PH9S8WlqUPMJ7/KHiYgsfG6uAlWIrjGAupSmcVrz0I4WJE+dokHsxVIFyQvGZMh6TGLv6v0n7CpbOPhdChou/OmsYNH5XjrISIllaYfio6g1EhQST2LKr9kP1AupeJ2nqD6NnKw3IWJVTuXPY7SYgZW2x5ZXPI1hLWVbJXB8/tWzHpElkQmuMe+uBP+QHZbw8G7qRaV6N6Wr+8H0O7TZblZYpRElEI+IGe4zSnmqKkYje9 arkadiy@carbon"
-  
   - name: Set authorized key for 'arkadiy'
     authorized_key:
       user: arkadiy
@@ -187,4 +207,20 @@
       user: vs
       state: present
       key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDmU1phigCktpQ3CyQ8SzshfdLfDo5rlyuM9w71SH0xHIdy5nUz5HCvyXDQJhj9/dWTWOjRhzICa2ojMfeqDE4zmxd7FCrHpNYJhrB3dNl6dPUOlZ9x66WTzlZNY0MDb5ezwA/zP9f2hHqOyD/W1D4n47tRdd1lBLHVFfVDLLHmpvmU+rvwGZ+bviQKhv5frQ/xaAAeSZAMiTbAr6aVq8Al7Gzo3X5jODcYiwAtF/Zkv9nPxc0DOeoZSbWfA3lsFPpxhvmTpVVSoX4B+DcbbHejaDrP+cL6sgGKOyymzLDGMECOPVA7nh2i4s5KMP+9SLBn7onA6WvbqPM9RZe7FO8X andrew@vaporstack.org"
+#------------------------------------------------------
+
+  - name: Add user 'arseniy'
+    user:
+      name: arseniy
+      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for 'arseniy'
+    authorized_key:
+      user: arseniy
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3zWX6F8f1RRCrI75dFYcz4lEVHLZt1b0VHInAA+U+bwUmTtuvic0s7YWX6XRzZSCrbHLHSOz3NoFFQTf7dpBuIapjBJxafA4eyLDMiYlqfVk8r+GjAA7Jqoz8zUzt9foCZkqcaNgdcpmx2YT/INupYuT8FZhqgSkbH9fU7zFTY2aV4d9oDfVSonKkyX2yqDPERrupMP3AZhqR4khPLpwHO8sF5kI/Ie5Cd5PW1nFZW0fabGAxLfZ9bvr2e5HRcV/3I6c7IDHirP5MQMM6Th61ut9DV0srG32v13m++taIasH1zLul1qnDt2iStyWkI51+1CKPsZ6NqqGnSg7StVqb arseniy@Arseniys-MacBook-Pro.local"
 

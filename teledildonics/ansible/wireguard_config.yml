@@ -1,6 +1,6 @@
 ---
-- hosts: all
+- hosts: selflove
   become: yes
   gather_facts: no
   roles:
-  - manage_users
+    - { role: wg_config }

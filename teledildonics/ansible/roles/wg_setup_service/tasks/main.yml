@@ -1,0 +1,19 @@
+---
+- name: Upload wg_setup systemd unit template
+  copy:
+    src: wg_setup@.service
+    dest: /etc/systemd/system/
+    mode: 0755
+
+- name: Generate and upload systemd configurations for wg_setup
+  template:
+    src: wg_setup.conf.j2
+    dest: /etc/wireguard/wg_setup-{{ wg_interface_name }}
+
+- name: enable wg_setup@.services for {{ wg_interface_name }}
+  systemd:
+    daemon-reload: yes
+    daemon-reexec: yes
+    state: restarted
+    name: wg_setup@{{ wg_interface_name }}.service
+    enabled: yes

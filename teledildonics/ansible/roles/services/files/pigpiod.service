@@ -1,0 +1,15 @@
+[Unit]
+Description=pigpiod.service
+After=network.target
+Before=heads-tails-lite.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/pigpiod -g
+RestartSec=5
+Restart=always
+TimeoutSec=10
+SuccessExitStatus=255
+
+[Install]
+WantedBy=multi-user.target heads-tails-lite.service

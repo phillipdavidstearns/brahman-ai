@@ -1,0 +1,10 @@
+---
+- hosts: radicalnetworks
+  become: yes
+  gather_facts: yes
+  vars:
+    config_paths: [ /etc/wireguard/wg0.conf, /etc/wireguard/wg1.conf ]
+  roles:
+    - { role: wg_setup_script }
+    - { role: hbd_wg_setup_service }
+    - { role: hbd_wg_config }

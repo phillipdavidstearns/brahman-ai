@@ -1,0 +1,29 @@
+---
+# https://github.com/adrianmihalko/raspberrypiwireguard/wiki/Install-WireGuard-on-Raspberry-Pi-1,-2-(not-v1.2),-Zero,-Zero-W
+- name: Install required packages
+  apt:
+    update_cache: yes
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - raspberrypi-kernel-headers
+    - libmnl-dev
+    - libelf-dev
+    - build-essential
+    - git
+
+- name: Make directory at /opt/wireguard/
+  file:
+    path: /opt/wireguard
+    state: directory
+
+- name: Clone WireGuard repository into /opt/wireguard/
+  git:
+    clone: yes
+    update: yes
+    dest: /opt/wireguard
+    repo: https://git.zx2c4.com/WireGuard
+
+- name: Compile wireguard
+  make:
+    chdir: /opt/wireguard/src

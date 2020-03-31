@@ -1,0 +1,21 @@
+---
+- name: Upload pigpiod and heads-tails-lite systemd unit files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/systemd/system/
+    mode: 0755
+  with_items:
+  - pigpiod.service
+
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: yes
+    daemon_reexec: yes
+
+- name: Enable pigpiod.service
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: restarted
+  with_items:
+  - pigpiod.service

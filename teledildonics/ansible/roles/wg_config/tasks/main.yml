@@ -1,0 +1,12 @@
+---
+- name: Create /etc/wireguard directory
+  file:
+    path: /etc/wireguard/
+    state: directory
+    
+- name: Generate {{ wg_interface_name }}.conf files from client template
+  template:
+    src: ./templates/wg-client.conf.j2
+    dest: /etc/wireguard/{{ wg_interface_name }}.conf
+
+

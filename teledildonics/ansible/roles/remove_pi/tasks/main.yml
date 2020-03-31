@@ -1,0 +1,11 @@
+---
+- name: Remove the user 'pi'
+  user:
+    name: pi
+    state: absent
+    remove: yes
+
+- name: Remove home directory of user 'pi' 
+  file:
+    path: /home/pi
+    state: absent

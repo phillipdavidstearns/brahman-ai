@@ -1,0 +1,9 @@
+---
+- hosts: selflove
+  become: yes
+  gather_facts: no
+  vars:
+    config_path: /etc/wireguard/wg0.conf
+  roles:
+    - { role: wg_setup_script }
+    - { role: wg_setup_service }

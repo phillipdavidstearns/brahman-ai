@@ -1,0 +1,58 @@
+
+Host portal*
+	User pi
+	IdentityFile ~/.ssh/id_rsa
+
+Host portal01
+	Hostname 10.79.103.101
+
+Host portal02
+	Hostname 10.79.103.102
+
+Host portal03
+	Hostname 10.79.103.103
+
+Host portal04
+	Hostname 10.79.103.104
+
+Host portal05
+	Hostname 10.79.103.105
+
+Host portal06
+	Hostname 10.79.103.106
+
+Host portal07
+	Hostname 10.79.103.107
+
+Host portal08
+	Hostname 10.79.103.108
+
+Host portal09
+	Hostname 10.79.103.109
+
+Host portal10
+	Hostname 10.79.103.110
+
+Host portal11
+	Hostname 10.79.103.111
+
+Host portal12
+	Hostname 10.79.103.112
+
+Host portal13
+	Hostname 10.79.103.113
+
+Host portal14
+	Hostname 10.79.103.114
+
+Host portal15
+	Hostname 10.79.103.115
+
+Host portal16
+	Hostname 10.79.103.116
+
+Host portal17
+	Hostname 10.79.103.117
+
+Host portal18
+	Hostname 10.79.103.118

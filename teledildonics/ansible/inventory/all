@@ -1,0 +1,17 @@
+[local]
+selflove ansible_host=10.79.10.126
+
+[local:vars]
+ansible_user=phillipstearns
+ansible_ssh_user=phillipstearns
+ansible_ssh_key=~/.ssh/id_rsa.pub
+
+[remote]
+mhl-00 ansible_host=23.95.213.211
+
+[bootstrap]
+#selflove
+
+[bootstrap:vars]
+ansible_user=pi
+ansible_ssh_pass=raspberry

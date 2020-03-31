@@ -44,7 +44,7 @@ clusterNAS
 cluster0[04:15]
 
 [active:children]
-beagles
+#beagles
 
 #-------------------------------------------------
 # bbaaa

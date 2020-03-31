@@ -1,0 +1,13 @@
+[Unit]
+Description=wg_setup for %I
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/wireguard/wg_setup-%I
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/wg_setup -i ${IFACE_NAME} -a ${WG_IPADDR} -c ${CONF_PATH}
+ExecStop=/sbin/ip link del ${IFACE_NAME}
+
+[Install]
+WantedBy=multi-user.target

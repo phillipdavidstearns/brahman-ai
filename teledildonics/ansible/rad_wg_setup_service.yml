@@ -1,0 +1,7 @@
+---
+- hosts: radicalnetworks
+  become: yes
+  vars:
+    config_paths: [ /etc/wireguard/wg0.conf, /etc/wireguard/wg1.conf ]
+  roles:
+   - { role: hbd_wg_setup_service }

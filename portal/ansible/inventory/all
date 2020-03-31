@@ -19,7 +19,7 @@ portal17	ansible_host=10.79.103.117
 portal18	ansible_host=10.79.103.118
 
 [portal:vars]
-ansible_user=portal
+ansible_user=pi
 
 [bootstrap]
 
@@ -29,5 +29,5 @@ ansible_user=portal
 [bootstrap:vars]
 ansible_user=pi
 ansible_ssh_user=pi
-ansible_ssh_pass=raspberry
-ansible_become_pass=raspberry
+ansible_ssh_pass="Abraham 2020"
+ansible_become_pass="Abraham 2020"

@@ -1,0 +1,39 @@
+---
+- hosts: local
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Add user 'alice'
+    user:
+      name: alice
+      password: "$6$/Ea/TKtKZkkR10rO$6EIfXFUh21xYmOEnPlNgn/S4nwAGPoaq4fZABkCoQPgmjwulHZqcUPy9sKdOS2fVlhJcV6w.v3g5vhD0YX/xC0"
+      create_home: yes
+      append: no
+      state: present
+      groups: wheel
+
+  - name: Set authorized key for 'alice'
+    authorized_key:
+      user: alice
+      state: present
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFX171dlncojH58FuYsFL0ktvLPVk10ioER5sccpbB/XeCIRANrm95SNmqAaWva202kgS5Qybu8B8CO4VyF9W2jHQWdNJyl5HCrTVPxEmq1AhNM6HnMCYG7A2Oe96Z0WmR8fdVqy7p3CKAXQqsYMB6i8xYjJwtXAgoAuMmF367HkUhwKFWuHaia62FqsXfyrILW/Q0oDiYm6sRbw3jmTP9ie9ir0OUZ/jLV7ih75jWNt9Ewk/NvHPR+sFRwcdONV3zVby9iYLqn9R2aYoe7HHELGXLpnVgFXaa6dZ0ZRsUokvMGGEPZuaOVyV/NI5yP97yIbJ5JSkhyGe5EOpEkJJv alicestewart@alice"
+
+#----------------------------------------------------------------------------
+
+- hosts: remote
+  become: yes
+  gather_facts: no
+  tasks:
+
+  - name: Add user 'alice'
+    user:
+      name: alice
+      state: absent
+      remove: yes
+
+  - name: Set authorized key for 'alice'
+    authorized_key:
+      user: alice
+      state: absent
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFX171dlncojH58FuYsFL0ktvLPVk10ioER5sccpbB/XeCIRANrm95SNmqAaWva202kgS5Qybu8B8CO4VyF9W2jHQWdNJyl5HCrTVPxEmq1AhNM6HnMCYG7A2Oe96Z0WmR8fdVqy7p3CKAXQqsYMB6i8xYjJwtXAgoAuMmF367HkUhwKFWuHaia62FqsXfyrILW/Q0oDiYm6sRbw3jmTP9ie9ir0OUZ/jLV7ih75jWNt9Ewk/NvHPR+sFRwcdONV3zVby9iYLqn9R2aYoe7HHELGXLpnVgFXaa6dZ0ZRsUokvMGGEPZuaOVyV/NI5yP97yIbJ5JSkhyGe5EOpEkJJv alicestewart@alice"

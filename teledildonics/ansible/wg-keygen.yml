@@ -1,0 +1,21 @@
+---
+- hosts: 127.0.0.1
+  connection: local
+  vars:
+    key_path: /Users/phillipstearns/Dropbox/Projects/brahman-ai/teledildonics/ansible/files/
+  tasks:
+
+  - name: Create folder for Keys
+    file:
+      path: "{{ key_path }}"
+      state: directory
+
+  - name: Generate Keys
+    shell: wg genkey | tee "{{ key_path }}""{{ item }}"-wgkey | wg pubkey > "{{ key_path }}""{{ item }}"-wgkey.pub
+    with_items:
+      - "selflove"
+
+  - name: Merge Keys Into Single file
+    shell: echo \#\ "{{ item }}" >> "{{ key_path }}"wg-keys.yml && cat "{{ key_path }}""{{ item }}"-wgkey >> "{{ key_path }}"wg-keys.yml && cat "{{ key_path }}""{{ item }}"-wgkey.pub >> "{{ key_path }}"wg-keys.yml
+    with_items:
+      - "selflove"

@@ -1,0 +1,10 @@
+[Interface]
+# Name = {{ inventory_hostname }}
+PrivateKey = {{ client_privkey }}
+
+[Peer]
+# Name = {{ server_name }}
+Endpoint = {{ endpoint_ip }}:{{ wireguard_port }}
+PublicKey = {{ server_pubkey }}
+AllowedIPs = {{ vpn_subnet }}
+PersistentKeepalive = 20

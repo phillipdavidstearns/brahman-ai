@@ -1,0 +1,18 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Upgrade installed packages
+  apt:
+    upgrade: dist
+
+- name: Install required packages
+  apt:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - pigpio
+    - python3-pigpio
+    - python3-dev
+    - python3-rpi.gpio

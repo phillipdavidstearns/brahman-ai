@@ -1,0 +1,91 @@
+- name: Change hostname to inventory_hostname in /etc/hostname
+  hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: Change hostname to inventory_hostname in /etc/hosts
+  lineinfile:
+    path: /etc/hosts
+    regex: '^127\.0\.1\.1'
+    line: "127.0.1.1\t{{ inventory_hostname }}"
+
+- name: Create Group 'wheel'
+  group:
+    name: wheel
+    state: present
+
+- name: Allow wheel group to have password authenticated sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) ALL'
+    validate: 'visudo -cf %s'
+
+- name: Allow 'sudo' group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+#------------------------------------------------------
+# python -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.using(rounds=5000).hash(getpass.getpass()))"
+#------------------------------------------------------
+
+- name: Add user 'selflove'
+  user:
+    name: selflove
+    password: "$6$/Ea/TKtKZkkR10rO$6EIfXFUh21xYmOEnPlNgn/S4nwAGPoaq4fZABkCoQPgmjwulHZqcUPy9sKdOS2fVlhJcV6w.v3g5vhD0YX/xC0"
+    shell: /bin/bash
+    create_home: yes
+    append: yes
+    state: present
+    groups: wheel
+
+#------------------------------------------------------
+
+- name: Add user 'phillipstearns'
+  user:
+    name: phillipstearns
+    password: "$6$15rD76mc4dmSnFm3$2271CZ.gyex32rkwWFp/Lizs9aRDieUosXQhQ90OGytEkTJz/ldazxvCO.k6uX5IT/uhXRmkxW1qrtUene5Oa1"
+    shell: /bin/bash
+    create_home: yes
+    append: no
+    state: present
+    groups: sudo
+
+- name: Set authorized key for Phillip to 'selflove' and 'phillipstearns'
+  authorized_key:
+    user: "{{ item }}"
+    state: present
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDYS3HXGzz8v0ZBBiVhuObUlW+p6NRVcWlxfll/m+UbUp9h+TOSycKilJaUOmx/UmJ0kvb9pB5zwQjmFwYcBHDTUTeoau1YiJhlh2g3CkNXdw8oxpsIXvs3rXfHMv7V9BqtFkiSOG5IPNtdZ6m6tkocefwTWkowDCJEb1mqyEQIcgjxubjlqAjFtDVIVaR4RoWAEVBGRaCXbnMKDGiki1M/n2svm95mJiJ406nWbSE+cHhL97xkJbjh06kfvUhY3E1qOJhMfXY4lVRdGiZmAWA45JfxLrtCXhyBIK0jxyztcG8HKRKa8RZ4pvc8I0XHBMhNYXAO2hqpztgVJZzjoM/5 phillipstearns@MacBook"
+  with_items:
+      - selflove
+      - phillipstearns
+
+#------------------------------------------------------
+
+- name: Change root password
+  user:
+    name: root
+    password: "$6$gd4JbY44r9vk09D4$81x1i4Q8umsG3IOvycm0j1G9k1uX2xZvyyT6jGN6ZjR2muKDoT5tiwR/BXxjFIdLSJ.auYhMk19oZj7JpOZa.0"
+
+- name: Disable Password Authentication
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: "PasswordAuthentication no"
+    state: present
+
+- name: Disable Root Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: "PermitRootLogin no"
+    state: present
+
+- name: restart ssh
+  service:
+    name: sshd
+    state: restarted

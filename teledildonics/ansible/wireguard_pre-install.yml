@@ -1,0 +1,92 @@
+---
+- hosts: selflove
+  become: yes
+  gather_facts: no
+  tasks:
+ 
+  - name: Download signing keys
+    apt_key:
+      keyserver: keyserver.ubuntu.com
+      id: "{{ item }}"
+      state: present
+    with_items:
+      - 7638D0442B90D010
+      - 8B48AD6246925553
+      - 04EE7237B7D453EC
+
+# Update Installed Packages
+
+  - name: Update installed packages
+    apt:
+      update_cache: yes
+      upgrade: full
+      autoremove: yes
+      autoclean: yes
+      force: yes
+
+# Install Wireguard for PI (ref: https://github.com/adrianmihalko/raspberrypiwireguard)
+
+  - name: Install "raspberrypi-kernel-headers"
+    apt:
+      name: raspberrypi-kernel-headers
+      update_cache: yes
+
+  - name: Upload unstable.list to /etc/apt/sources.list.d/
+    copy:
+      src: unstable.list
+      dest: /etc/apt/sources.list.d/
+
+  - name: Install dirmngr
+    apt:
+      name: dirmngr
+      update_cache: yes
+
+  - name: upload limit-unstable to /etc/apt/preferences.d/
+    copy:
+      src: limit-unstable
+      dest: /etc/apt/preferences.d/
+
+  - name: Update Cache
+    apt:
+      update_cache: yes
+
+  # compile kernel
+
+  - name: Install required packages for rpi-source
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - bc
+      - libncurses5-dev
+      - git
+      - bison
+      - flex
+      - libssl-dev
+       
+  - name: Install rpi-spource 
+    shell:
+      cmd: "wget https://raw.githubusercontent.com/notro/rpi-source/master/rpi-source -O /usr/local/bin/rpi-source && sudo chmod +x /usr/local/bin/rpi-source && /usr/local/bin/rpi-source -q --tag-update"
+
+# running the following caused ansible to hang, running from the device, the process required user input
+# might have to be run manually from the terminal...
+  - name: Install kernel headers via rpi-source
+    shell:
+      cmd: "rpi-source"
+
+  - name: Reboot
+    reboot:
+
+# compile from source for Pi 0
+  roles:
+  - { role: install_wireguard }
+
+  - name: Reboot
+    reboot:
+
+# Must compile wireguard from source!
+
+  # - name: Install WireGuard
+  #   apt:
+  #     name: wireguard
+  #     update_cache: yes
