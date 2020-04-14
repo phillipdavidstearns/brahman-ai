@@ -1,0 +1,4 @@
+- name: Install xterm
+  apt:
+    name: xterm
+    update_cache: yes

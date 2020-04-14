@@ -1,0 +1,18 @@
+[Unit]
+Description=portal packet sniffing for %I
+After=network.target rc.local.service
+
+[Service]
+Environment="DISPLAY=:0"
+Type=simple
+ExecStartPre=/bin/systemctl stop lightdm
+ExecStart=/usr/bin/xinit -maximize -k8 -j -fa monaco -fs 32 -fg white -bg black -e /bin/sh -c "\'/usr/local/bin/packet2audio -i %I -p\'"
+ExecStartPost=/usr/bin/xset -dpms
+ExecStartPost=/usr/bin/xset s noblank
+ExecStartPost=/usr/bin/xset s off
+Restart=on-success
+RestartPreventExitStatus=SIGTERM SIGKILL
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

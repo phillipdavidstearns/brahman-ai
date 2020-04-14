@@ -1,0 +1,19 @@
+- name: Delete portal@.service init script to /usr/local/src/portal/
+  file:
+    path: /usr/local/src/portal/portal_init.sh
+    state: absent
+
+- name: Delete /usr/local/src/portal/
+  file:
+    path: /usr/local/src/portal/
+    state: absent
+
+- name: Copy portal@.service unit to /etc/systemd/system/
+  copy:
+    src: portal@.service
+    dest: /etc/systemd/system/
+    mode: '755'
+
+- name: Reload the daemon
+  systemd:
+    daemon_reload: yes

@@ -1,0 +1,11 @@
+- name: Copy portal@.service unit to /etc/systemd/system/
+  copy:
+    src: portal@.service
+    dest: /etc/systemd/system/
+    mode: '755'
+
+# - name: Enable packet2audio@.service to start at boot
+#   systemd:
+#     name: packet2audio@wg0,wg1.service
+#     enabled: yes
+#     force: yes

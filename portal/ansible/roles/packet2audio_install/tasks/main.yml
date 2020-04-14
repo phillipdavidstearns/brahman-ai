@@ -1,0 +1,18 @@
+- name: Install PyAudio
+  apt:
+    name: python3-pyaudio
+    update_cache: yes
+
+- name: Clone packet2audio
+  git:
+    repo: https://github.com/phillipdavidstearns/packet2audio.git
+    dest: /usr/local/src/packet2audio/
+    clone: yes
+    update: yes
+    accept_hostkey: yes
+
+- name: Symlink packet2audio to /usr/local/bin
+  file:
+    src: /usr/local/src/packet2audio/packet2audio.py
+    dest: /usr/local/bin/packet2audio
+    state: link
