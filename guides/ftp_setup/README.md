@@ -58,11 +58,14 @@ Device          Start         End    Sectors  Size Type
 
 1. Create a mount point for the USD drive: `$ sudo mkdir /media/NAS`
 1. Mount the Linux filesystem partition of USB drive to the mount point: `$ sudo mount /dev/sda3 /media/NAS`
-1. Create a directory for the user on the USB drive: `$ sudo mkdir abraham`
+1. Create a directory for the user on the USB drive: `$ sudo mkdir /media/NAS/abraham`
 1. Set ownership to user: `$ sudo chown abraham:abraham /media/NAS/abraham`
 1. Set permissions: `$ sudo chmod 755 /media/NAS/abraham`
 1. Set the user's 'home' directory to the directory on the USB drive: `$ sudo usermod -d /media/NAS/abraham abraham`
-1. Edit the configuration file: `$ sudo nano /etc/vsftpd.conf`
+1. Edit `/etc/fstab` to setup auto-mount: `$ sudo nano /etc/fstab`
+1. Add the line: `/dev/sda3    /media/NAS/    ext4    defaults    0    1`
+1. Save and reboot: `$ sudo reboot`
+1. Edit the `vsftp` configuration file: `$ sudo nano /etc/vsftpd.conf`
 1. Make sure the following options are set:
 
 ```
@@ -73,9 +76,9 @@ allow_writeable_chroot=YES
 ssl_enable=YES
 ```
 
-*note:* The above options may need to be either uncommented or manually set.
+*note:* The above options may need to be either uncommented or manually added.
 
-1. `$ sudo systemctl restart vsftpd`
+1. Restart the `vsftp` daemon: `$ sudo systemctl restart vsftpd`
 
 ## Connecting
 
