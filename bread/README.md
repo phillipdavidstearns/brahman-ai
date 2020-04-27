@@ -1,4 +1,4 @@
-# Rustic Bread
+# Rustic Bread - The Phil Stearns Method
 
 ![](images/00-intro.jpg)
 
@@ -14,10 +14,10 @@ I've put together this little resource as a way of passing along the techniques 
 
 The history of bread making goes back eons, some 14,600 to 11,600 years ago, as evidenced by charred crumbs of a flatbread made by Natufian hunter-gatherers found at an archaeological site in the Black Desert in Jordan.[[source](https://en.wikipedia.org/wiki/History_of_bread#Antiquity)]. While the development of bread making through history is fascinating and provides a wonderful window into the histories of different cultures around the world, we're going to keep things practical and focused on my own process.
 
-* Ingredients
 * Tools
+* Ingredients
 * Pre-ferment
-* Tools and Measurment
+* Measurement
 * Mix
 * Bulk Fermentation
 * Kneading
@@ -26,12 +26,31 @@ The history of bread making goes back eons, some 14,600 to 11,600 years ago, as 
 * Final Proof
 * Score
 * Baking
+* Cooling and Storing
 
-## Resources:
+### Additional Resources:
 
 * [Bakerpedia](https://bakerpedia.com/)
 * [Breadtopia](https://breadtopia.com/)
-* Breadpedia
+
+## Tools
+
+I've been at a disadvantage here in Bombay Beach due to a lack of several key tools:
+
+* Digital Infrared Thermometer (point and shoot)
+* Meat Thermometer
+* Dutch Oven
+* Digital Scale
+
+Tools I've been working with:
+
+* Measuring cups and spoons
+* Mixing bowls
+* Baking trays
+* Plastic bags
+* Chopsticks
+* Spatulas
+* Mixing Spoons
 
 ## Ingredients: Flour, Water, Salt, Temperature, Time
 
@@ -136,20 +155,7 @@ If the cultures eat up all the flour, they starve. You must continuously feed th
 * At room temp, the starter needs to be fed every 12 hours
 * Once you've gotten the starter to the point where you can make bread, you can refrigerate after feeding for up to a week, at which point it needs to be fed again.
 
-## Tools and Measurements
-
-I've been at a disadvantage here in Bombay Beach due to a lack of several key tools:
-
-* Digital Infrared Thermometer (point and shoot)
-* Meat Thermometer
-* Dutch Oven
-* Digital Scale
-
-Tools I've been working with:
-
-* 
-
-### Measurements
+## Measurements
 
 Typically I use a rough version of bakers percentage to determine the amount of water to add to a given amount of flour. This gets confusing when dealing with volume vs weight. At Bombay Beach, I have been feeling out volume based measurements and have a few general rules:
 
@@ -166,26 +172,32 @@ For the loaves I've been making here:
 If I desire a hydration level of 75% (meaning the mass of water is 75% that of all other dry goods) then my math might look something like this:
 
 **Starter Amount**
+
 200g (100% hydration, 50/50 water flour)
 
 **Dry Weight**
-600g Flour
-10g Salt
-100g Flour (from starter)
+
+* 600g Flour
+* 10g Salt
+* 100g Flour (from starter)
 
 Total Dry Weight: 710g
 
 **Wet Weight**
-710g * 75% Hydration = 533g
-533g - 100g (from starter) = 433g
+
+* 710g * 75% Hydration = 533g
+* 533g - 100g (from starter) = 433g
+
+Total Wet Weight to Add: 433g
 
 **Final Weights**
-Dry Flour: 600g
-Salt: 10g
-Water: 433g
-Starter: 200g
 
-## Mixing
+* Dry Flour: 600g
+* Salt: 10g
+* Water: 433g
+* Starter: 200g
+
+## Mix
 
 * Combine Dry Ingredients and incorporate with a whisk or fork
 * Add starter
@@ -193,10 +205,17 @@ Starter: 200g
 * Gently stir starter into water and work deeper into dry ingredients
 * Scrape from sides
 * Form a shaggy mass
+* Add water or flour as necessary
 
 ## Autolyse
 
 * Let the dough sit covered for 15-25 minutes
+
+This is the process of mixing the flour and water and waiting a period of time before kneading. After mixing, the flour begins to hydrate and enzymes present within the flour begin the break down the proteins and convert starches to sugar.
+
+There is a proper way to approach this, explored by Barb Alpern and published on the blog of the King Arthur Flour Company [[link](https://www.kingarthurflour.com/blog/2017/09/29/using-the-autolyse-method)]. Technically this process involves mixing only the water and flour together, letting it rest for 20 minutes to 60 minutes and THEN adding the starter and salt.
+
+Personally, I tried this and was always frustrated by the extra effort required to properly incorporate the remaining ingredients to the hydrated flour. My approach is a lazy one. I just add everything together and give it a rest before proceeding.
 
 ## Kneading
 
@@ -218,4 +237,45 @@ Starter: 200g
 * This gives time for the fermentation process to develop the bread's flavor
 * Also allows you to control the time (extend the process) by controlling temp
 
-...await further instruction...
+### Knead and Warm-Up
+
+* Remove the dough from the fridge 2-3 hours prior to baking in order to bring the mass up to room temp.
+	* Larger amounts will require more time.
+	* It's OK if the dough doesn't get up to room temp.
+* Gently scoop and fold the dough a few times
+	* It will loose volume, but that's OK
+	* Volume will be regained during warm-up
+
+## Shape and Final Proof
+
+* turn the dough out onto a floured surface
+	* flouring is done by sprinkling (DO NOT SPREAD BY HAND)
+* To create a long loaf, stretch and roll up, keeping the seam on the bottom
+	* Transfer long loaves onto a floured baking sheet immediately after shaping and gently cover 
+* To create a round loaf, gather/fold the sides together and flip so that the folds are on the bottom
+	* Transfer round loaves to a floured bowl (keep folds down) after shaping and gently cover
+	 
+## Score and Bake
+
+1. move your racks so that both are as low as they can go.
+1. place one baking tray on the lower rack and fill with ~1/4" of water
+1. if baking a round loaf and you have a dutch oven, place both the lid and the oven side by side to pre-heat
+1. pre-heat the oven to 450 degrees Fahrenheit
+1. once the oven reaches temperature, score the bread
+	* for long loaves, you can score lengthwise once or score diagonally multiple times using a wet chef's knife or straight razor
+	* for round loaves on a tray, you can score in an x or a square
+	* for round loaves in a dutch oven, remove from oven, flour, then turn the dough out into the dutch oven, cover.
+1. place on the top rack in the center
+1. spray with a water filled mister and then again 10 minutes into the bake
+1. total bake time ~25-30min
+
+* note: for round loaves in a dutch oven, bake 20 mins covered and then remove the cover, continue baking 20 additional minutes or until the crust is as dark as you like.
+* note: the core temp of the loaf should reach a minimum of 200 degrees
+
+## Cooling and Storing
+
+* Cool on a rack or devise someway to prevent moisture from making the bottom of the loaf moist
+* Cool completely. It's still cooking for at least 15 minutes after you remove from the oven
+* After about 2 hours, ideally 3, the loafs are ready to sample.
+* You can slice and freeze loaves. Toast on demand.
+* NEVER Refrigerate your bread!
