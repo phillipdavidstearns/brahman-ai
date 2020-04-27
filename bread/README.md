@@ -221,7 +221,7 @@ Personally, I tried this and was always frustrated by the extra effort required 
 
 * In the bowl, with wet hands, gently scoop and fold, turning the bowl 1/4 rotation each time.
 * Press out lumps as you go.
-* Form a dough the feels consistent
+* Form a dough that feels consistent
 * Cover and let stand
 
 ## Bulk Fermentation
