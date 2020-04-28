@@ -129,10 +129,15 @@ The cultures are converting starches into alcohols, sugars and CO2 gas. Alcohols
 
 ### Ingredients
 
+![](images/starter-ingredients.jpeg)
+
 * 1/2 C Unbleached flour
 * 1/2 C Water (distilled or filtered water ideal)
 
 ### Directions
+
+![](images/starter-post-mix.jpeg)<br>
+Mixed starter.
 
 1. Mix flour and water thoroughly in a pint size jar (or larger if you plan on working up to a bigger batch)
 	* note: the consistency should be like thick pancake batter 
@@ -142,6 +147,9 @@ The cultures are converting starches into alcohols, sugars and CO2 gas. Alcohols
 1. Discard half of the mixture and repeat
 
 After 7 days of this, you can make bread!
+
+![](images/starter-mature.jpeg)<br>
+Cassandra is ~7 years old, ready to make bread!
 
 ### Feeding
 
@@ -239,6 +247,9 @@ Personally, I tried this and was always frustrated by the extra effort required 
 
 ### Knead and Warm-Up
 
+![](images/post-cold-bulk.jpg)<br>
+Dough fresh out of the fridge after ~16hrs of chillin'.
+
 * Remove the dough from the fridge 2-3 hours prior to baking in order to bring the mass up to room temp.
 	* Larger amounts will require more time.
 	* It's OK if the dough doesn't get up to room temp.
@@ -246,7 +257,13 @@ Personally, I tried this and was always frustrated by the extra effort required 
 	* It will loose volume, but that's OK
 	* Volume will be regained during warm-up
 
+![](images/post-cold-fold.jpg)<br>
+Dough after scooping and folding 4-6 times.
+
 ## Shape and Final Proof
+
+![](images/pre-shape.jpg)<br>
+Pre-shaping dough on a floured surface.
 
 * turn the dough out onto a floured surface
 	* flouring is done by sprinkling (DO NOT SPREAD BY HAND)
@@ -254,8 +271,15 @@ Personally, I tried this and was always frustrated by the extra effort required 
 	* Transfer long loaves onto a floured baking sheet immediately after shaping and gently cover 
 * To create a round loaf, gather/fold the sides together and flip so that the folds are on the bottom
 	* Transfer round loaves to a floured bowl (keep folds down) after shaping and gently cover
+
+![](images/post-shape.jpg)<br>
+Dough split and shaped into two long loaves.
+ 
 	 
 ## Score and Bake
+
+![](images/score.jpg)<br>
+Scored loaves ready for the oven.
 
 1. move your racks so that both are as low as they can go.
 1. place one baking tray on the lower rack and fill with ~1/4" of water
@@ -272,10 +296,17 @@ Personally, I tried this and was always frustrated by the extra effort required 
 * note: for round loaves in a dutch oven, bake 20 mins covered and then remove the cover, continue baking 20 additional minutes or until the crust is as dark as you like.
 * note: the core temp of the loaf should reach a minimum of 200 degrees
 
+![](images/bake.jpeg)
+
 ## Cooling and Storing
+
+![](images/cooling.jpg)<br>
+Cooling loaves on a rack.
 
 * Cool on a rack or devise someway to prevent moisture from making the bottom of the loaf moist
 * Cool completely. It's still cooking for at least 15 minutes after you remove from the oven
 * After about 2 hours, ideally 3, the loafs are ready to sample.
 * You can slice and freeze loaves. Toast on demand.
 * NEVER Refrigerate your bread!
+
+![](images/slice.jpg)
