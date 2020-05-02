@@ -48,6 +48,7 @@ Tools I've been working with:
 * Mixing bowls
 * Baking trays
 * Plastic bags
+* Wire whisk
 * Chopsticks
 * Spatulas
 * Mixing Spoons
@@ -58,9 +59,11 @@ Yes, it's a simple as that.
 
 ### Flour
 
-Unbleached, Always
+Unbleached, Always. Most loaves will have more than 50% wheat flour. To get an idea of how the different flours impact hydration requirements (how much water), workability (extensibility and elasticity), and crumb (final quality of the bread structure), start with up to 75%/25% wheat and any other flour.
 
-**Wheat**
+Generally speaking, whole grain flours will produce a tighter structure (fewer large holes) and a denser loaf. Rye tends to be a bit sticky and reduced elasticity. Whole wheat and spelt in high enough percentages can increase elasticity (stretchiness/toughness) and decrease extensibility (how long can it be pulled before breaking).
+
+#### Wheat
 
 ![](images/wheat.jpg)
 [[source](https://flour.com/anatomy-of-a-wheat-kernel/)]
@@ -81,18 +84,72 @@ Unbleached, Always
 	* contains more protein than bread flour
 	* rich flavor but can create dense breads
 
-**Rye**
+#### Rye
 
 A grain closely related to barley and wheat. Tends to have a stickier consistency, imparts a nice spicy and nutty aroma and flavor to a loaf. I generally never use more than 1/4 the total flour volume.
 
 * [An excellent guide to the classifications from Dark to Light](http://theryebaker.com/rye-flour/)
 
-**Other Grains**
+#### Other Grains
 
 * Spelt
 * Kamut
 * Faro
 * Semolina
+* Barley
+
+#### Tasty Additions
+
+After the autolyse process (described below), fold in desired amounts of any of the following goodies:
+
+* Oats (Rolled)
+* Sprouted anything
+	* Wheat berries
+	* Barley
+	* Lentils
+	* Amaranth
+	* Quinoa
+* Spices
+	* Turmeric
+	* Caraway seeds
+	* Cumin
+* Onions (caramelized are especially tasty)
+* Garlic
+* Seeds
+	* Sunflower
+	* Pumpkin
+	* Poppy
+* Nuts
+	* Walnuts (chopped)
+	* Hazelnuts (rough chopped)
+* Raisins
+* Olives
+* Roasted bell peppers
+* Jalapeños
+* Cheese
+
+#### Recommended Flours
+
+This is mostly a list of flours from companies I've personally tried and can vouch for. The difference between organic vs non-organic is negligible and a matter of personal preference.
+
+**King Arthur Flour Company**
+
+* Special Patent (all purpose)
+* Bread Flour
+* Whole Wheat
+
+**Arrowhead Mills**
+
+* Rye
+* Spelt
+* All Purpose
+
+**Bob's Red Mill**
+
+* Artisanal Bread Flour
+* Dark Rye
+* Whole Wheat
+
 
 ### Water
 
@@ -158,7 +215,7 @@ If the cultures eat up all the flour, they starve. You must continuously feed th
 * Discard the top layer, up to half of the culture. Pour off fluids if necessary.
 * Mix in equal parts flour and water (sometime less water to maintain thick batter like consistency)
 
-#### Tempurature
+#### Temperature
 
 * At room temp, the starter needs to be fed every 12 hours
 * Once you've gotten the starter to the point where you can make bread, you can refrigerate after feeding for up to a week, at which point it needs to be fed again.
@@ -217,7 +274,7 @@ Total Wet Weight to Add: 433g
 
 ## Autolyse
 
-* Let the dough sit covered for 15-25 minutes
+* Let the dough sit covered for 15-45 minutes
 
 This is the process of mixing the flour and water and waiting a period of time before kneading. After mixing, the flour begins to hydrate and enzymes present within the flour begin the break down the proteins and convert starches to sugar.
 
