@@ -50,9 +50,9 @@ PersistentKeepalive = 20
 1. `wg-quick up wg0`
 1. `wg-quick down wg0`
 
-## Using custom scripts
+## Using custom scripts if `wg-quick` is broken
 
-Feel free to change directories to meet your file management needs.
+I made some custom scripts a while back because `wg-quick` wasn't working for me. If you are able to manually complete the steps to setup the interface, these scripts will replace a broken `wg-quick`. Feel free to change directories to meet your file management needs.
 
 1. Change to your home directory: `$ cd ~`
 1. Clone the repo containing example scripts: `$ git clone https://github.com/phillipdavidstearns/wg-helpers.git`
