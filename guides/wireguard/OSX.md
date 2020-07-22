@@ -23,6 +23,7 @@ Enter:
 
 ```
 [Interface]
+Address = <admin_assigned_ip_address>/32
 PrivateKey = <client_pubilc_key>
 
 [Peer]
@@ -32,6 +33,7 @@ AllowedIPs = <vpn_subnet>
 PersistentKeepalive = 20
 ```
 
+* replace `<admin_assigned_ip_address>` with the ip address in the vpn subnet that was assigned to you by the admin
 * replace: `<client_private_key>` with the contents of `~/.wireguard/privatekey`.
 * replace: `<endpoint_ip_address:port>` with the ipaddress or domain name of the server and the server listening port. e.g.: `123.123.123.123:12345`
 * replace: `<server_public_key>` with the server **public** key.
@@ -45,7 +47,8 @@ PersistentKeepalive = 20
 
 ## Using `wg-quick` (OSX)
 
-1. `wg-quick up /etc/wireguard/wg0.conf`
+1. `wg-quick up wg0`
+1. `wg-quick down wg0`
 
 ## Using custom scripts
 

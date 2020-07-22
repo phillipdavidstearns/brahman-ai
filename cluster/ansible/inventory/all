@@ -19,10 +19,11 @@ cluster012 ansible_host=10.79.20.112
 cluster013 ansible_host=10.79.20.113
 cluster014 ansible_host=10.79.20.114
 cluster015 ansible_host=10.79.20.115
-cluster016 ansible_host=10.79.20.116
-cluster017 ansible_host=10.79.20.117
-cluster018 ansible_host=10.79.20.118
-cluster019 ansible_host=10.79.20.119
+
+# cluster016 ansible_host=10.79.20.116
+# cluster017 ansible_host=10.79.20.117
+# cluster018 ansible_host=10.79.20.118
+# cluster019 ansible_host=10.79.20.119
 
 [beagles]
 
