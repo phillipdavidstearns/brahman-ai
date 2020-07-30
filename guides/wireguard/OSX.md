@@ -24,7 +24,7 @@ Enter:
 ```
 [Interface]
 Address = <admin_assigned_ip_address>/32
-PrivateKey = <client_pubilc_key>
+PrivateKey = <client_private_key>
 
 [Peer]
 Endpoint = <endpoint_ip_address:port>
