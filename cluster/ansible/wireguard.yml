@@ -1,6 +1,12 @@
 ---
-- hosts: all
+- hosts: pis
   become: yes
   gather_facts: no
   roles:
   - wireguard
+
+- hosts: pis
+  gather_facts: no
+  become: no
+  roles:
+  - wireguard_keygen

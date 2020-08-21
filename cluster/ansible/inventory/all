@@ -86,4 +86,5 @@ conductor_ip=10.79.20.100
 
 [all:vars]
 
+ansible_user=cluster
 ansible_python_interpreter=/usr/bin/python3

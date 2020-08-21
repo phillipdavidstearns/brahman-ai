@@ -1,0 +1,13 @@
+---
+- name: check for /home/{{ ansible_user }}/.ssh/id_rsa
+  stat:
+    path: "/home/{{ ansible_user }}/.ssh/id_rsa"
+  register: check_result
+
+- name: setup ssh keys
+  block:
+  - name: ssh-keygen
+    openssh_keypair:
+      path: "/home/{{ ansible_user }}/.ssh/id_rsa"
+      size: 4096
+  when: not check_result.stat.exists

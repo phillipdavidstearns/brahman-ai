@@ -1,0 +1,57 @@
+---
+- hosts: cluster
+  gather_facts: no
+  become: yes
+  tasks:
+
+  - name: Checking for /etc/wireguard/{{ wg_interface_name }}.conf
+    stat:
+      path: /etc/wireguard/{{ wg_interface_name }}.conf
+    register: conf
+
+  - name: Configure {{ wg_interface_name }}
+    block:
+    - name: Get wg publickey
+      command:
+        cmd: 'cat /home/{{ ansible_user }}/.wg/publickey'
+      register: publickey
+
+    - name: Get wg privatekey
+      command:
+        cmd: 'cat /home/{{ ansible_user }}/.wg/privatekey'
+      register: privatekey
+
+    # - name:
+    #   debug:
+    #     var: "{{ item }}"
+    #   loop:
+    #   - vpn_client_ip
+    #   - publickey.stdout
+    #   - privatekey.stdout
+    #   - wg_interface_name
+    #   - vpn_server_endpoint
+    #   - vpn_server_publickey
+    #   - vpn_allowed_ips
+
+    - name: Generate /etc/wireguard/wg0.conf
+      template:
+        src: wg.conf.j2
+        dest: /etc/wireguard/{{ wg_interface_name }}.conf
+        group: root
+        owner: root
+        mode: '0600'
+        backup: yes
+    when: not conf.stat.exists
+
+  - name: Start wg-quick@{{ wg_interface_name }}.service
+    systemd:
+      daemon_reload: yes
+      name: wg-quick@{{ wg_interface_name }}.service
+      enabled: yes
+      state: started
+
+  - name: Add cronjob to restart wg-quick every 5 mins
+    cron:
+      user: root
+      minute: '*/5'
+      job: '/bin/systemctl restart wg-quick@{{ wg_interface_name }}.service'

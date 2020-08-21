@@ -1,0 +1,17 @@
+---
+- hosts: pis
+  gather_facts: no
+  become: yes
+  tasks:
+
+  - name: remove unstable main from apt source list
+    lineinfile:
+      path: /etc/apt/sources.list.d/unstable.list
+      line: 'deb http://deb.debian.org/debian/ unstable main'
+      state: absent
+      create: no
+
+  - name: remove /etc/apt/preferences.d/limit-unstable
+    file:
+      path: /etc/apt/preferences.d/limit-unstable
+      state: absent

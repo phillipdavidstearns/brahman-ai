@@ -1,0 +1,27 @@
+---
+- name: Check for presence of keys
+  stat:
+    path: /home/{{ ansible_user }}/.wg/publickey
+  register: key_status
+
+- name: Generate Wireguard keys
+  block:
+    - name: Create /home/{{ ansible_user }}/.wg
+      file:
+        path: /home/{{ ansible_user }}/.wg
+        state: directory
+        mode: '700'
+    - name: Generate Wireguard keys
+      shell:
+        chdir: /home/{{ ansible_user }}/.wg
+        cmd: 'wg genkey | tee privatekey | wg pubkey > publickey'
+        creates: /home/{{ ansible_user }}/.wg/publickey
+    - name: Set Private Key modes to 0600
+      file:
+        path: /home/{{ ansible_user }}/.wg/privatekey
+        mode: '600'
+    - name: Set key modes to 0644
+      file:
+        path: /home/{{ ansible_user }}/.wg/publickey
+        mode: '644'
+  when: not key_status.stat.exists

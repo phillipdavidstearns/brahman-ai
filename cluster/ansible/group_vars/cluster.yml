@@ -1,0 +1,5 @@
+---
+wg_interface_name: 'wg0'
+vpn_server_endpoint: '23.95.213.211:31337'
+vpn_server_publickey: 'hIWJ74vYfcqSgsASqIooNRdohQBpKG9SXHkl0tmM1R0='
+vpn_allowed_ips: '10.42.0.0/24'

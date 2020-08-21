@@ -1,0 +1,10 @@
+[Interface]
+Address = {{ vpn_client_ip }}
+PrivateKey = {{ privatekey.stdout }}
+
+[Peer]
+#Name = Server
+Endpoint = {{ vpn_server_endpoint }}
+PublicKey = {{ vpn_server_publickey }}
+AllowedIPs = {{ vpn_allowed_ips }}
+PersistentKeepalive = 20

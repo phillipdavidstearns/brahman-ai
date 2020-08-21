@@ -1,0 +1,11 @@
+---
+- hosts: pis
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: Install mpi
+    apt:
+      update_cache: yes
+      pkg:
+      - mpich
+      - python3-mpi4py
