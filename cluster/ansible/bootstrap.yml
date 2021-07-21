@@ -35,17 +35,6 @@
 
 #------------------------------------------------------
 
-  - name: Add user 'abraham'
-    user:
-      name: abraham
-      password: "$6$9BaHMJB5xbuBBTsU$ii0GPiw80SoUBzz2vr3mzY/3lEO9gEdSq7j3s9pgOP8kD3FTr7SlTQuLjH8jiNFHWgbLpnpums7YiWD1nn14B0"
-      create_home: yes
-      home: /run/vsftpd/data
-      append: yes
-      state: present
-
-#------------------------------------------------------
-
   - name: Add user 'phillipstearns'
     user:
       name: phillipstearns
@@ -71,11 +60,11 @@
       name: root
       password: "$6$YSB/2PA4Fx7myMnv$eUsCUSwkewWxt/y5oT82ykjSzlTHmY0UKwuBfMm2nre6xX3HUXvlSLcaeVZFepDrLroMYwJezkqq6if2MSqph."
 
-  - name: Disable Password Authentication
+  - name: Enable Password Authentication
     lineinfile:
       dest: /etc/ssh/sshd_config
       regexp: '^PasswordAuthentication'
-      line: "PasswordAuthentication no"
+      line: "PasswordAuthentication yes"
       state: present
  
   - name: Disable Root Login

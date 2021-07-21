@@ -27,7 +27,7 @@ cluster015 ansible_host=10.79.20.115
 
 [beagles]
 
-clusterNAS ansible_host=10.79.20.99
+clusterNAS ansible_host=10.10.10.40
 k8s_controller ansible_host=10.79.20.254
 
 [controller]
@@ -71,7 +71,7 @@ conductor_ip=10.79.20.100
 [bootstrap]
 
 #cluster016 ansible_user=phillipstearns
-#cluster017 ansible_user=pi ansible_ssh_pass=raspberry ansible_sudo_pass=raspberry
+#cluster009 ansible_user=pi ansible_ssh_pass=raspberry ansible_sudo_pass=raspberry
 #cluster018 ansible_user=pi ansible_ssh_pass=raspberry ansible_sudo_pass=raspberry
 #cluster019 ansible_user=pi ansible_ssh_pass=raspberry ansible_sudo_pass=raspberry
 
